@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeLux — Admin Panel</title>
+<link rel="stylesheet" href="admin.css">
+
+<style>
+.exchange-hero{display:grid;grid-template-columns:92px 1fr auto;align-items:center;gap:24px;padding:30px;border-radius:24px;margin:20px 0 24px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;box-shadow:0 18px 45px rgba(37,99,235,.20);overflow:hidden}.exchange-hero-icon{width:76px;height:76px;border-radius:22px;display:grid;place-items:center;font-size:38px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25)}.exchange-label{font-size:12px;font-weight:800;letter-spacing:2px;opacity:.78}.exchange-hero h2{margin:7px 0 6px;font-size:28px}.exchange-hero p{margin:0;max-width:650px;line-height:1.6;opacity:.88}.exchange-hero-badge{min-width:150px;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);text-align:center}.exchange-hero-badge strong,.exchange-hero-badge span{display:block}.exchange-hero-badge span{font-size:12px;margin-top:4px;opacity:.75}.exchange-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;margin:0}.exchange-card{min-width:0;min-height:250px;padding:24px;border-radius:22px;background:#fff;border:1px solid #e7edf7;box-shadow:0 12px 32px rgba(15,35,70,.07);display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}.exchange-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(15,35,70,.12)}.exchange-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.exchange-card-top>span{font-size:12px;font-weight:800;color:#94a3b8}.exchange-card-icon{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;font-size:28px;background:#eff6ff}.exchange-card h3{margin:0 0 10px;font-size:20px;color:#10213d}.exchange-card p{margin:0;color:#64748b;line-height:1.6;flex:1}.exchange-card button{margin-top:20px;width:100%;border:0;border-radius:13px;padding:13px 16px;background:#f1f5f9;color:#1d4ed8;font-weight:800;cursor:pointer}.exchange-card button:hover{background:#dbeafe}.exchange-card button b{float:right}.exchange-info{display:flex;align-items:center;gap:16px;margin-top:22px;padding:18px 22px;border:1px solid #e2e8f0;border-radius:18px;background:#f8fafc}.exchange-info-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#fff;font-size:22px;box-shadow:0 5px 15px rgba(15,35,70,.06)}.exchange-info strong{color:#10213d}.exchange-info p{margin:4px 0 0;color:#64748b}.dark .exchange-card{background:#111d30;border-color:#24344d}.dark .exchange-card h3,.dark .exchange-info strong{color:#fff}.dark .exchange-card p,.dark .exchange-info p{color:#9fb0c7}.dark .exchange-card button{background:#182943;color:#93b8ff}.dark .exchange-info{background:#0f1a2b;border-color:#24344d}@media(max-width:900px){.exchange-hero{grid-template-columns:70px 1fr}.exchange-hero-badge{grid-column:2;justify-self:start}.exchange-grid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.exchange-hero{grid-template-columns:1fr;padding:22px}.exchange-hero-badge{grid-column:auto}.exchange-grid{grid-template-columns:1fr}.exchange-card{min-height:220px}}
+</style>
+
+
+<style id="hacker-neon-theme">
+:root{--hack-green:#39ff88;--hack-cyan:#00e5ff;--hack-purple:#8b5cf6;--hack-bg:#050812}
+body{background-image:radial-gradient(circle at 15% 20%,rgba(0,229,255,.08),transparent 28%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.08),transparent 30%),linear-gradient(rgba(57,255,136,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,136,.025) 1px,transparent 1px);background-size:auto,auto,32px 32px,32px 32px}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:linear-gradient(transparent 50%,rgba(57,255,136,.018) 50%);background-size:100% 4px;opacity:.35}
+button,.btn,.nav-btn,.action-btn{transition:.25s;position:relative;overflow:hidden}
+button:hover,.btn:hover,.nav-btn:hover,.action-btn:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(0,229,255,.28),0 0 32px rgba(57,255,136,.12)}
+.card,.house-card,.modal-content,.panel,.stat-card,.settings-card,.section-card{border-color:rgba(0,229,255,.18)!important;box-shadow:0 10px 35px rgba(0,0,0,.16),0 0 0 1px rgba(57,255,136,.035)}
+.house-card:hover,.card:hover{box-shadow:0 16px 45px rgba(0,0,0,.22),0 0 25px rgba(0,229,255,.14)}
+input,select,textarea{outline:none;transition:.2s}input:focus,select:focus,textarea:focus{border-color:var(--hack-cyan)!important;box-shadow:0 0 0 3px rgba(0,229,255,.1),0 0 16px rgba(0,229,255,.12)}
+</style>
+
+<style id="dashboard-cyber-style">
+.dashboard-cyber{position:relative}.cyber-dashboard-hero{position:relative;min-height:310px;margin-bottom:18px;padding:42px 44px;border:1px solid rgba(0,229,255,.28);border-radius:28px;overflow:hidden;background:radial-gradient(circle at 82% 45%,rgba(0,229,255,.14),transparent 28%),radial-gradient(circle at 20% 100%,rgba(139,92,246,.13),transparent 32%),linear-gradient(135deg,#071321,#081b27 55%,#07101c);box-shadow:0 25px 70px rgba(0,0,0,.28),inset 0 0 60px rgba(0,229,255,.025)}.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.055) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to right,black,transparent 80%);opacity:.55}.hero-scan{position:absolute;left:0;right:0;height:2px;top:-5px;background:linear-gradient(90deg,transparent,var(--hack-green),var(--hack-cyan),transparent);box-shadow:0 0 18px var(--hack-cyan);animation:dashScan 5s linear infinite}.cyber-dashboard-hero .hero-content{position:relative;z-index:2;max-width:700px}.cyber-dashboard-hero .hero-small{display:flex;align-items:center;gap:9px;color:var(--hack-cyan);font-size:11px;font-weight:900;letter-spacing:3px}.pulse-dot,.status-dot{width:8px;height:8px;border-radius:50%;background:var(--hack-green);box-shadow:0 0 12px var(--hack-green);animation:dashPulse 1.6s infinite}.cyber-dashboard-hero h1{margin:14px 0 10px;color:#fff;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-1px}.cyber-dashboard-hero h1 span{color:var(--hack-green);text-shadow:0 0 20px rgba(57,255,136,.7)}.cyber-dashboard-hero p{max-width:650px;color:#9bb2c4;line-height:1.7;font-size:14px}.cyber-dashboard-hero .hero-buttons{display:flex;gap:12px;margin-top:24px}.cyber-primary,.cyber-ghost{padding:13px 19px;border-radius:13px;font-weight:900;border:1px solid rgba(0,229,255,.25);cursor:pointer}.cyber-primary{background:linear-gradient(135deg,var(--hack-green),#13c873);color:#03120b;box-shadow:0 0 24px rgba(57,255,136,.2)}.cyber-ghost{background:rgba(255,255,255,.045);color:#d8faff}.cyber-core{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:190px;height:190px;border-radius:50%;display:grid;place-items:center}.core-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,229,255,.35)}.ring-one{inset:4px;box-shadow:0 0 35px rgba(0,229,255,.14);animation:spinDash 12s linear infinite}.ring-two{inset:24px;border-style:dashed;border-color:rgba(57,255,136,.5);animation:spinDash 8s linear infinite reverse}.core-center{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;color:var(--hack-green);font-size:38px;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.45);box-shadow:0 0 35px rgba(0,229,255,.2),inset 0 0 25px rgba(57,255,136,.08);text-shadow:0 0 15px var(--hack-green)}.core-label{position:absolute;bottom:-8px;text-align:center;color:#7892a5;font-size:8px;letter-spacing:2px}.core-label b{color:var(--hack-green);font-size:10px}.dashboard-status-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;margin-bottom:30px}.system-status,.system-time,.system-version{display:flex;align-items:center;gap:12px;padding:15px 17px;border:1px solid rgba(0,229,255,.14);border-radius:17px;background:rgba(5,16,28,.62);box-shadow:0 8px 25px rgba(0,0,0,.13)}.system-status>div,.system-time>div,.system-version>div{display:flex;flex-direction:column;gap:3px}.system-status b,.system-time b,.system-version b{color:#e9fbff;font-size:13px}.system-status small,.system-time small,.system-version small{color:#718b9e;font-size:10px}.system-time>span,.system-version>span{font-size:20px;color:var(--hack-cyan)}.dashboard-section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px}.dashboard-section-head>div>span,.section-title>div>span,.security-top>div>span,.cyber-welcome>div>span{color:var(--hack-cyan);font-size:9px;font-weight:900;letter-spacing:2px}.dashboard-section-head h2{margin:5px 0 3px;color:#eefcff;font-size:22px}.dashboard-section-head p,.section-title p{margin:0;color:#718b9e;font-size:12px}.refresh-dashboard{border:1px solid rgba(0,229,255,.2);background:rgba(0,229,255,.05);color:var(--hack-cyan);padding:10px 14px;border-radius:11px;font-weight:800;cursor:pointer}.cyber-stats{gap:14px}.cyber-stat{position:relative;overflow:hidden;min-height:118px;background:linear-gradient(145deg,rgba(9,25,39,.95),rgba(6,15,27,.95))!important;border-color:rgba(0,229,255,.16)!important}.cyber-stat:before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--hack-cyan),transparent);opacity:.65}.cyber-stat>div:nth-child(2){z-index:1}.cyber-stat span{color:#7592a5}.cyber-stat strong{color:#f1ffff}.cyber-stat small{display:block;margin-top:3px;color:#5f788a;font-size:9px}.cyber-stat>i{position:absolute;right:13px;top:10px;color:rgba(0,229,255,.2);font-style:normal;font-weight:900;font-size:11px}.dashboard-lower-grid{display:grid;grid-template-columns:1.5fr .8fr;gap:16px;margin-top:26px}.quick-panel,.security-panel{padding:21px;border:1px solid rgba(0,229,255,.14);border-radius:22px;background:rgba(5,16,28,.72);box-shadow:0 15px 40px rgba(0,0,0,.14)}.section-title{margin-bottom:15px}.section-title h2{margin:5px 0 3px;color:#eefcff;font-size:19px}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-card{border:1px solid rgba(0,229,255,.1)!important;background:rgba(255,255,255,.025)!important;color:#dffaff!important;border-radius:15px!important;padding:14px!important}.quick-card strong{color:#ecffff}.quick-card small{color:#658092!important}.security-top{display:flex;align-items:center;gap:11px;margin-bottom:18px}.security-shield{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:var(--hack-green);font-size:23px;background:rgba(57,255,136,.07);border:1px solid rgba(57,255,136,.18);text-shadow:0 0 14px var(--hack-green)}.security-top h2{margin:4px 0 0;color:#efffff;font-size:18px}.security-top>b{margin-left:auto;font-size:9px;color:var(--hack-green);border:1px solid rgba(57,255,136,.25);padding:6px 8px;border-radius:8px}.security-line{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.055)}.security-line>span{width:6px;height:6px;border-radius:50%;background:var(--hack-green);box-shadow:0 0 9px var(--hack-green)}.security-line div{display:flex;flex-direction:column;gap:2px;flex:1}.security-line strong{font-size:12px;color:#d9faff}.security-line small{font-size:9px;color:#627d8e}.security-line em{font-style:normal;color:var(--hack-green);font-size:10px}.security-foot{margin-top:14px;color:#6e8798;font-size:10px}.cyber-welcome{border-color:rgba(57,255,136,.18)!important;background:linear-gradient(135deg,rgba(57,255,136,.055),rgba(0,229,255,.045))!important}.cyber-welcome h2{color:#efffff}.cyber-welcome p{color:#718b9e}.cyber-welcome button{background:rgba(57,255,136,.08)!important;color:var(--hack-green)!important;border-color:rgba(57,255,136,.2)!important}@keyframes dashScan{0%{transform:translateY(0)}100%{transform:translateY(315px)}}@keyframes dashPulse{50%{opacity:.35;box-shadow:0 0 3px var(--hack-green)}}@keyframes spinDash{to{transform:rotate(360deg)}}@media(max-width:900px){.cyber-core{right:3%;opacity:.55}.dashboard-lower-grid{grid-template-columns:1fr}.dashboard-status-row{grid-template-columns:1fr 1fr}.system-status{grid-column:1/-1}}@media(max-width:620px){.cyber-dashboard-hero{padding:30px 22px;min-height:390px}.cyber-core{width:130px;height:130px;right:10px;top:auto;bottom:12px}.core-center{width:54px;height:54px;font-size:28px}.cyber-dashboard-hero .hero-buttons{flex-direction:column}.dashboard-status-row{grid-template-columns:1fr}.system-status{grid-column:auto}.quick-grid{grid-template-columns:1fr}.dashboard-section-head{align-items:flex-start;gap:10px;flex-direction:column}}
+</style>
+</head>
+<body><div class="app">
+<aside class="sidebar">
+  <div class="logo"><span>🏠</span><strong>HomeLux</strong></div>
+  <div class="admin-card"><div class="admin-icon">👑</div><div><strong>Администратор</strong><small>Панель управления</small></div></div>
+  <nav class="nav">
+    <button class="nav-btn active" onclick="showPage('dashboard', this)"><span>📊</span><b>Главная</b></button>
+    <button class="nav-btn" onclick="showPage('houses', this)"><span>🏠</span><b>Все дома</b></button>
+    <button class="nav-btn" onclick="showPage('add', this)"><span>➕</span><b>Добавить дом</b></button>
+    <button class="nav-btn" onclick="showPage('users', this)"><span>👥</span><b>Пользователи</b></button>
+    <button class="nav-btn" onclick="showPage('sales', this)"><span>💰</span><b>Продажи</b></button>
+    <button class="nav-btn" onclick="showPage('exchange', this)"><span>🔄</span><b>Ивази хона</b></button>
+    <button class="settings-btn" onclick="openSettings()"><span>⚙️</span><b>Настройки</b></button>
+  </nav>
+  <div class="sidebar-bottom"><div class="mini-status"><span class="status-online"></span><div><b>HomeLux Online</b><small>Система работает</small></div></div></div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div class="top-title"><h2 id="pageTitle">Панель управления</h2><p>Добро пожаловать в HomeLux</p></div>
+  <div class="top-right">
+    <div class="live-time"><strong id="liveClock">00:00:00</strong><small id="liveDate">Сегодня</small></div>
+    <div class="top-actions">
+      <button class="icon-btn" onclick="toggleDark()">🌙</button>
+      <button class="icon-btn" onclick="showNotifications()">🔔<i id="notificationBadge">0</i></button>
+      <button class="icon-btn" onclick="refreshAdmin()">🔄</button>
+      <button class="logout-btn" onclick="logoutAdmin()">🚪 Выйти</button>
+    </div>
+  </div>
+</header>
+
+<section id="dashboard" class="page active dashboard-cyber">
+  <div class="cyber-dashboard-hero">
+    <div class="hero-grid-lines"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-content">
+      <div class="hero-small"><span class="pulse-dot"></span> HOMELUX // ADMIN CORE</div>
+      <h1>Панель управления <span>⚡</span></h1>
+      <p>Центр управления недвижимостью. Дома, пользователи, продажи и избранное — всё под контролем.</p>
+      <div class="hero-buttons">
+        <button class="cyber-primary" onclick="showPage('add')">＋ Добавить дом</button>
+        <button class="cyber-ghost" onclick="showPage('houses')">⌂ Открыть дома</button>
+      </div>
+    </div>
+    <div class="cyber-core">
+      <div class="core-ring ring-one"></div><div class="core-ring ring-two"></div>
+      <div class="core-center">⌂</div>
+      <span class="core-label">SYSTEM<br><b>ONLINE</b></span>
+    </div>
+  </div>
+
+  <div class="dashboard-status-row">
+    <div class="system-status"><span class="status-dot"></span><div><b>Система активна</b><small>HomeLux работает стабильно</small></div></div>
+    <div class="system-time"><span>◷</span><div><b id="dashClock">00:00:00</b><small>Текущее время</small></div></div>
+    <div class="system-version"><span>⌁</span><div><b>ADMIN v2.0</b><small>Cyber Interface</small></div></div>
+  </div>
+
+  <div class="dashboard-section-head"><div><span>LIVE DATA</span><h2>Статистика системы</h2><p>Обновляется автоматически</p></div><button class="refresh-dashboard" onclick="refreshAdmin()">⟳ Обновить</button></div>
+  <div class="stats cyber-stats">
+    <div class="stat-card cyber-stat"><div class="stat-icon blue-icon">👥</div><div><span>Пользователи</span><strong id="usersCount">0</strong><small>зарегистрировано</small></div><i>01</i></div>
+    <div class="stat-card cyber-stat"><div class="stat-icon green-icon">🏠</div><div><span>Дома</span><strong id="housesCount">0</strong><small>объектов в системе</small></div><i>02</i></div>
+    <div class="stat-card cyber-stat"><div class="stat-icon yellow-icon">💰</div><div><span>Продажи</span><strong id="salesCount">0</strong><small>успешных сделок</small></div><i>03</i></div>
+    <div class="stat-card cyber-stat"><div class="stat-icon pink-icon">❤️</div><div><span>Избранное</span><strong id="favoritesCount">0</strong><small>сохранённых домов</small></div><i>04</i></div>
+  </div>
+
+  <div class="dashboard-lower-grid">
+    <div class="dashboard-section quick-panel">
+      <div class="section-title"><div><span>COMMAND CENTER</span><h2>⚡ Быстрые действия</h2><p>Управление HomeLux</p></div></div>
+      <div class="quick-grid">
+        <button class="quick-card" onclick="showPage('houses')"><span>🏠</span><div><strong>Все дома</strong><small>Просмотреть список</small></div><b>→</b></button>
+        <button class="quick-card" onclick="showPage('add')"><span>＋</span><div><strong>Добавить дом</strong><small>Создать карточку</small></div><b>→</b></button>
+        <button class="quick-card" onclick="showPage('sales')"><span>◈</span><div><strong>Продажи</strong><small>История сделок</small></div><b>→</b></button>
+        <button class="quick-card" onclick="openSettings()"><span>⚙</span><div><strong>Настройки</strong><small>Настроить систему</small></div><b>→</b></button>
+      </div>
+    </div>
+
+    <div class="security-panel">
+      <div class="security-top"><span class="security-shield">⌁</span><div><span>SECURITY</span><h2>Защита панели</h2></div><b>SAFE</b></div>
+      <div class="security-line"><span></span><div><strong>Admin PIN</strong><small>Активная защита входа</small></div><em>●</em></div>
+      <div class="security-line"><span></span><div><strong>Session</strong><small>Доступ администратора</small></div><em>●</em></div>
+      <div class="security-foot">🔒 Данные панели защищены</div>
+    </div>
+  </div>
+
+  <div class="welcome-box cyber-welcome"><div class="welcome-icon">⌂</div><div><span>HOMELUX CORE</span><h2>Добро пожаловать в HomeLux</h2><p>Выберите раздел слева или используйте быстрые действия выше.</p></div><button onclick="showPage('add')">＋ Новый объект</button></div>
+</section>
+
+<section id="houses" class="page">
+  <div class="section-head"><div><div class="page-label">HOMELUX</div><h1>🏠 Все дома</h1><p>Все добавленные дома HomeLux</p></div><button class="primary-btn" onclick="showPage('add')">➕ Добавить дом</button></div>
+  <div class="house-toolbar"><div class="search-box"><span>🔍</span><input id="houseSearch" type="text" placeholder="Поиск дома, города или адреса..." oninput="renderHouses()"></div><select id="houseSort" onchange="renderHouses()"><option value="new">Сначала новые</option><option value="old">Сначала старые</option><option value="priceHigh">Цена ↓</option><option value="priceLow">Цена ↑</option><option value="areaHigh">Площадь ↓</option><option value="areaLow">Площадь ↑</option></select><button class="export-btn" onclick="exportHouses()">📥 Backup</button></div>
+  <div id="housesList" class="houses-list"></div>
+</section>
+
+<section id="add" class="page">
+  <div class="section-head"><div><div class="page-label">HOMELUX</div><h1 id="formTitle">➕ Добавить дом</h1><p>Заполните информацию о доме</p></div></div>
+  <form id="houseForm" class="house-form">
+    <input type="hidden" id="editHouseId">
+    <div class="form-top"><div class="form-icon">🏡</div><div><h2>Информация о доме</h2><p>Добавьте основные данные, чтобы красиво показать объект клиентам.</p></div></div>
+    <div class="form-grid">
+      <div class="field"><label>Название дома</label><input id="houseName" type="text" placeholder="Например: Modern Villa" required></div>
+      <div class="field"><label>Город</label><input id="houseCity" type="text" placeholder="Например: Душанбе" required></div>
+      <div class="field"><label>Цена</label><input id="housePrice" type="number" placeholder="150000" min="0" required></div>
+      <div class="field"><label>Площадь (м²)</label><input id="houseArea" type="number" placeholder="250" min="1" required></div>
+      <div class="field"><label>Этажей</label><input id="houseFloors" type="number" placeholder="2" min="1" required></div>
+      <div class="field"><label>Расположение</label><input id="houseLocation" type="text" placeholder="Например: центр города"></div>
+      <div class="field"><label>Статус дома</label><select id="houseStatus"><option value="sale">🟢 В продаже</option><option value="reserved">🟡 Забронирован</option><option value="sold">🔴 Продан</option></select></div>
+    </div>
+    <div class="field"><label>Описание</label><textarea id="houseDescription" rows="5" placeholder="Описание дома..."></textarea></div>
+    <div class="field"><label>Фото дома</label><div class="file-upload"><input id="houseImage" type="file" accept="image/*"><div class="file-upload-text">📷 Нажмите и выберите фотографию</div></div></div>
+    <div id="houseImagePreview" class="image-preview">🏠</div>
+    <div class="form-buttons"><button type="submit" class="save-btn">💾 Сохранить дом</button><button type="button" class="cancel-btn" onclick="cancelEdit()">❌ Отмена</button></div>
+  </form>
+</section>
+
+<section id="users" class="page"><div class="section-head"><div><div class="page-label">HOMELUX</div><h1>👥 Пользователи</h1><p>Пользователи HomeLux</p></div></div><div class="empty-page"><div class="empty-icon">👥</div><h2>Пользователи</h2><p>Зарегистрированных пользователей:</p><strong id="usersPageCount">0</strong></div></section>
+<section id="sales" class="page"><div class="section-head"><div><div class="page-label">HOMELUX</div><h1>💰 Продажи</h1><p>Информация о продажах домов</p></div></div><div class="empty-page"><div class="empty-icon">💰</div><h2>Продажи</h2><p>Всего продаж:</p><strong id="salesPageCount">0</strong></div></section>
+
+<section id="exchange" class="page">
+
+  <div class="section-head">
+    <div>
+      <div class="page-label">HOMELUX</div>
+      <h1>🔄 Ивази хона</h1>
+      <p>Обмен недвижимостью — всё просто и удобно</p>
+    </div>
+    <button class="primary-btn" onclick="showPage('houses')">🏠 Смотреть дома</button>
+  </div>
+
+  <div class="exchange-hero">
+    <div class="exchange-hero-icon">🔄</div>
+    <div class="exchange-hero-content">
+      <span class="exchange-label">HOMELUX EXCHANGE</span>
+      <h2>Ивази хона осонтар шуд</h2>
+      <p>Домро интихоб кунед, маълумоташро бинед ва барои иваз кардан пешниҳоди мувофиқ омода кунед.</p>
+    </div>
+    <div class="exchange-hero-badge"><strong>HomeLux</strong><span>Smart Exchange</span></div>
+  </div>
+
+  <div class="exchange-grid">
+    <div class="exchange-card">
+      <div class="exchange-card-top"><div class="exchange-card-icon">🏠</div><span>01</span></div>
+      <h3>Домро интихоб кунед</h3>
+      <p>Аз рӯйхати хонаҳои HomeLux хонаеро интихоб кунед, ки мехоҳед барои иваз кардан пешниҳод кунед.</p>
+      <button onclick="showPage('houses')">Дидани хонаҳо <b>→</b></button>
+    </div>
+
+    <div class="exchange-card">
+      <div class="exchange-card-top"><div class="exchange-card-icon">🔄</div><span>02</span></div>
+      <h3>Пешниҳоди ивазкунӣ</h3>
+      <p>Хонаи мувофиқро пайдо кунед ва шартҳои ивазкуниро муқоиса кунед.</p>
+      <button onclick="showPage('houses')">Оғоз кардан <b>→</b></button>
+    </div>
+
+    <div class="exchange-card">
+      <div class="exchange-card-top"><div class="exchange-card-icon">✨</div><span>03</span></div>
+      <h3>Ҳамааш як ҷо</h3>
+      <p>Маълумоти хона, нарх, масоҳат ва ҷойгиршавӣ дар як панели қулай дастрас аст.</p>
+      <button onclick="showPage('dashboard')">Ба главная <b>→</b></button>
+    </div>
+  </div>
+
+  <div class="exchange-info">
+    <div class="exchange-info-icon">💡</div>
+    <div><strong>Маслиҳати HomeLux</strong><p>Барои пешниҳоди беҳтар аксҳои босифат, нарх ва маълумоти пурраи хонаро илова кунед.</p></div>
+  </div>
+
+</section>
+</main>
+</div>
+
+<div id="settingsModal" class="settings-modal" onclick="closeSettingsOutside(event)"><div class="settings-box"><button class="settings-close" onclick="closeSettings()">×</button><div class="settings-header"><div class="settings-big-icon">⚙️</div><div><span>HOMELUX</span><h2>Настройки</h2><p>Персонализируйте HomeLux</p></div></div>
+<div class="settings-group"><h3>🎨 Цвет интерфейса</h3><div class="color-grid">
+<button class="color-choice" data-color="#2865eb" onclick="setAccent('#2865eb')"><span class="color-swatch" style="background:#2865eb"></span><b>Синий</b></button><button class="color-choice" data-color="#7c3aed" onclick="setAccent('#7c3aed')"><span class="color-swatch" style="background:#7c3aed"></span><b>Фиолетовый</b></button><button class="color-choice" data-color="#059669" onclick="setAccent('#059669')"><span class="color-swatch" style="background:#059669"></span><b>Зелёный</b></button><button class="color-choice" data-color="#e11d48" onclick="setAccent('#e11d48')"><span class="color-swatch" style="background:#e11d48"></span><b>Розовый</b></button><button class="color-choice" data-color="#f97316" onclick="setAccent('#f97316')"><span class="color-swatch" style="background:#f97316"></span><b>Оранжевый</b></button><button class="color-choice" data-color="#dc2626" onclick="setAccent('#dc2626')"><span class="color-swatch" style="background:#dc2626"></span><b>Красный</b></button><button class="color-choice" data-color="#0891b2" onclick="setAccent('#0891b2')"><span class="color-swatch" style="background:#0891b2"></span><b>Бирюзовый</b></button><button class="color-choice" data-color="#06b6d4" onclick="setAccent('#06b6d4')"><span class="color-swatch" style="background:#06b6d4"></span><b>Голубой</b></button><button class="color-choice" data-color="#ca8a04" onclick="setAccent('#ca8a04')"><span class="color-swatch" style="background:#ca8a04"></span><b>Золотой</b></button><button class="color-choice" data-color="#4f46e5" onclick="setAccent('#4f46e5')"><span class="color-swatch" style="background:#4f46e5"></span><b>Индиго</b></button>
+</div></div>
+<div class="settings-group"><h3>🌙 Тема</h3><div class="setting-row"><div><b>Тёмная тема</b><small>Включить ночной режим</small></div><label class="switch"><input id="darkSwitch" type="checkbox" onchange="applyDarkFromSettings(this.checked)"><span></span></label></div></div>
+<div class="settings-group"><h3>🔔 Уведомления</h3><div class="setting-row"><div><b>Уведомления</b><small>Показывать сообщения о действиях</small></div><label class="switch"><input id="notifySwitch" type="checkbox" checked onchange="toggleNotifications(this.checked)"><span></span></label></div></div>
+<div class="settings-group"><h3>💾 Данные</h3><div class="settings-actions"><button onclick="exportHouses()">📥 Скачать Backup</button><button onclick="document.getElementById('restoreInput').click()">📤 Восстановить</button><input id="restoreInput" type="file" accept=".json" hidden onchange="restoreHouses(this)"></div></div>
+<button class="settings-save" onclick="closeSettings()">✓ Готово</button>
+</div></div>
+
+<div id="notificationPanel" class="notification-panel"><div class="notification-head"><b>🔔 Уведомления</b><button onclick="clearNotifications()">Очистить</button></div><div id="notificationList"></div></div>
+<div id="toast" class="toast"><span id="toastIcon">✅</span><div><strong id="toastTitle">Готово</strong><p id="toastMessage">Операция выполнена.</p></div></div>
+<script src="admin.js"></script>
+</body>
+</html>
