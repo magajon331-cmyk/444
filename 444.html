@@ -1,0 +1,4644 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HomeLux — Хонаҳои орзу</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --primary:#2563eb;
+    --primary2:#1d4ed8;
+    --dark:#10213d;
+    --text:#24344d;
+    --muted:#71809a;
+    --bg:#f4f7fc;
+    --card:#ffffff;
+    --border:#e3eaf4;
+    --success:#16a34a;
+    --danger:#ef4444;
+    --shadow:0 18px 50px rgba(31,55,90,.10);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top right,rgba(37,99,235,.10),transparent 30%),
+        linear-gradient(135deg,#f8faff,#eef4fb);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    transition:.3s;
+}
+
+body.dark{
+    --dark:#f4f7ff;
+    --text:#e8eef9;
+    --muted:#aab7ca;
+    --bg:#0b1424;
+    --card:#121f34;
+    --border:#263752;
+    background:
+        radial-gradient(circle at top right,rgba(37,99,235,.20),transparent 30%),
+        #0b1424;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    height:82px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.dark .header{
+    background:rgba(18,31,52,.90);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    min-width:210px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    color:white;
+    display:grid;
+    place-items:center;
+    font-size:30px;
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.logo-title{
+    font-size:25px;
+    font-weight:900;
+    color:#2563eb;
+}
+
+.logo-subtitle{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.main-nav{
+    display:flex;
+    gap:8px;
+}
+
+.nav-link{
+    background:transparent;
+    color:var(--muted);
+    padding:11px 16px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    background:#edf3ff;
+    color:var(--primary);
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.search-box{
+    display:flex;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.search-box input{
+    width:190px;
+    padding:12px;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--text);
+}
+
+.search-box button{
+    width:45px;
+    background:var(--primary);
+    color:white;
+}
+
+.register-button{
+    background:var(--primary);
+    color:white;
+    padding:13px 18px;
+    border-radius:14px;
+    font-weight:800;
+}
+
+/* ================= MAIN ================= */
+
+main{
+    max-width:1400px;
+    margin:auto;
+    padding:35px 5% 130px;
+}
+
+.page{
+    display:none;
+    animation:pageIn .35s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:45px;
+    align-items:center;
+    min-height:520px;
+}
+
+.hero-label{
+    color:var(--primary);
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(42px,5vw,72px);
+    line-height:1.03;
+    color:var(--dark);
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+    max-width:650px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin:30px 0;
+}
+
+.primary-button,
+.secondary-button{
+    padding:15px 22px;
+    border-radius:15px;
+    font-weight:800;
+}
+
+.primary-button{
+    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:0 12px 28px rgba(37,99,235,.25);
+}
+
+.secondary-button{
+    background:var(--card);
+    color:var(--dark);
+    border:1px solid var(--border);
+}
+
+.hero-statistics{
+    display:flex;
+    gap:40px;
+}
+
+.stat strong{
+    display:block;
+    color:var(--dark);
+    font-size:25px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.hero-house-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:30px;
+    box-shadow:var(--shadow);
+    transform:rotate(1deg);
+}
+
+.premium-label{
+    position:absolute;
+    margin:15px;
+    z-index:2;
+    background:#fff;
+    color:#b77900;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:900;
+}
+
+.hero-house-image{
+    height:360px;
+    border-radius:23px;
+    background:
+        linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55)),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+}
+
+.hero-house-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8px 8px;
+}
+
+.hero-house-info h3{
+    color:var(--dark);
+    margin-bottom:7px;
+}
+
+.hero-house-info p{
+    font-size:13px;
+}
+
+.hero-house-info strong{
+    color:var(--primary);
+}
+
+/* ================= SECTIONS ================= */
+
+.home-section,
+.why-section{
+    margin-top:70px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:25px;
+}
+
+.section-header small,
+.center-title small,
+.page-heading small,
+.about-text small,
+.settings-box small{
+    color:var(--primary);
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.section-header h2,
+.center-title h2,
+.page-heading h2{
+    color:var(--dark);
+    font-size:32px;
+    margin-top:8px;
+}
+
+.view-all{
+    color:var(--primary);
+    background:transparent;
+    font-weight:800;
+}
+
+/* ================= CARDS ================= */
+
+.houses-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.house-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:23px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(30,50,80,.07);
+    transition:.25s;
+}
+
+.house-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 22px 45px rgba(30,50,80,.14);
+}
+
+.house-image{
+    height:245px;
+    position:relative;
+    overflow:hidden;
+    background:#dbe5f2 center/cover;
+    isolation:isolate;
+    transition:transform .45s ease;
+}
+
+.house-image::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(15,35,65,.02) 25%,rgba(10,25,48,.72) 100%);
+    z-index:0;
+    pointer-events:none;
+}
+
+.house-image::after{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:170px;
+    right:-70px;
+    top:-75px;
+    border-radius:50%;
+    background:rgba(255,255,255,.16);
+    filter:blur(2px);
+    z-index:0;
+    pointer-events:none;
+}
+
+.house-card:hover .house-image{
+    transform:scale(1.015);
+}
+
+.house-card:hover .house-image[style]{
+    background-size:108% !important;
+}
+
+.homes-title-wrap{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:24px 26px;
+    margin-bottom:24px;
+    border:1px solid var(--border);
+    border-radius:26px;
+    background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(239,246,255,.72));
+    box-shadow:0 18px 45px rgba(37,99,235,.09);
+    position:relative;
+    overflow:hidden;
+}
+
+.homes-title-wrap::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    right:-70px;
+    top:-90px;
+    border-radius:50%;
+    background:rgba(37,99,235,.10);
+}
+
+.homes-title-icon{
+    width:62px;
+    height:62px;
+    flex:0 0 62px;
+    display:grid;
+    place-items:center;
+    border-radius:20px;
+    color:#fff;
+    font-size:30px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:0 14px 30px rgba(37,99,235,.28);
+}
+
+.homes-title-wrap h2{
+    color:var(--dark);
+    font-size:34px;
+    margin:6px 0 5px;
+}
+
+.homes-title-wrap p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.dark .homes-title-wrap{
+    background:linear-gradient(135deg,#14243b,#101c30);
+}
+
+.dark .homes-title-wrap h2{
+    color:#fff;
+}
+
+
+.house-favorite{
+    position:absolute;
+    right:13px;
+    top:13px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    font-size:20px;
+}
+
+.house-favorite.saved{
+    color:#ef4444;
+}
+
+.house-content{
+    padding:18px;
+}
+
+.house-content h3{
+    color:var(--dark);
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.house-location{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.house-details{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:17px;
+}
+
+.detail{
+    background:#f0f4fa;
+    color:#53647d;
+    padding:7px 9px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.dark .detail{
+    background:#1d2d46;
+    color:#bdc9da;
+}
+
+.house-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.price{
+    color:var(--primary);
+    font-size:20px;
+    font-weight:900;
+}
+
+.details-button{
+    background:#edf3ff;
+    color:var(--primary);
+    padding:10px 13px;
+    border-radius:11px;
+    font-weight:800;
+}
+
+/* ================= WHY ================= */
+
+.center-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.center-title p{
+    color:var(--muted);
+    margin-top:10px;
+}
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.benefit{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:30px;
+    text-align:center;
+}
+
+.benefit-icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.benefit h3{
+    color:var(--dark);
+    margin-bottom:10px;
+}
+
+.benefit p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+/* ================= HEADINGS ================= */
+
+.page-heading{
+    padding:35px 0 25px;
+}
+
+.page-heading p{
+    color:var(--muted);
+    margin-top:10px;
+}
+
+/* ================= SEARCH ================= */
+
+.large-search{
+    display:flex;
+    max-width:800px;
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:7px;
+    border-radius:17px;
+    margin-bottom:30px;
+}
+
+.large-search input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px;
+    background:transparent;
+    color:var(--text);
+    font-size:16px;
+}
+
+.large-search button{
+    background:var(--primary);
+    color:white;
+    padding:0 25px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+/* ================= FILTERS ================= */
+
+.filters{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.filter{
+    padding:11px 17px;
+    border-radius:12px;
+    background:var(--card);
+    color:var(--muted);
+    border:1px solid var(--border);
+    font-weight:700;
+}
+
+.filter.active{
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
+}
+
+/* ================= PROFILE ================= */
+
+.profile-box,
+.settings-box{
+    max-width:700px;
+    margin:40px auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:45px;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+
+.profile-avatar{
+    width:100px;
+    height:100px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#edf3ff;
+    font-size:45px;
+    margin:0 auto 20px;
+}
+
+.profile-box h2{
+    color:var(--dark);
+    margin:12px 0;
+}
+
+.profile-box p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+    align-items:center;
+    margin-top:45px;
+}
+
+.about-picture{
+    height:470px;
+    border-radius:30px;
+    background:
+        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+    box-shadow:var(--shadow);
+}
+
+.about-text h2{
+    color:var(--dark);
+    font-size:42px;
+    margin:14px 0 20px;
+}
+
+.about-text p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:17px;
+}
+
+.about-list{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.about-list div{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:13px;
+    border-radius:12px;
+    color:var(--text);
+}
+
+/* ================= CONTACTS ================= */
+
+.contacts-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    margin-top:28px;
+}
+
+.contact-card{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(244,248,255,.88));
+    border:1px solid rgba(37,99,235,.12);
+    padding:28px 20px;
+    border-radius:26px;
+    text-align:center;
+    box-shadow:0 14px 35px rgba(30,64,120,.09);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+
+.contact-card::before{
+    content:"";
+    position:absolute;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:rgba(37,99,235,.09);
+    top:-55px;
+    right:-35px;
+}
+
+.contact-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 22px 45px rgba(30,64,120,.15);
+    border-color:rgba(37,99,235,.28);
+}
+
+.contact-card > div:first-child{
+    position:relative;
+    width:62px;
+    height:62px;
+    margin:0 auto 17px;
+    display:grid;
+    place-items:center;
+    border-radius:20px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    font-size:28px;
+    box-shadow:0 10px 22px rgba(37,99,235,.25);
+}
+
+.contact-card h3{
+    position:relative;
+    color:var(--dark);
+    margin-bottom:9px;
+    font-size:18px;
+}
+
+.contact-card p{
+    position:relative;
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.contacts-extra{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px !important;
+    margin-top:22px !important;
+}
+
+.contacts-extra .contact-card{
+    text-align:left;
+    padding:24px;
+}
+
+.contacts-extra .contact-card > div:first-child{
+    margin:0 0 14px;
+}
+
+.contacts-extra .contact-card button{
+    border:1px solid var(--border) !important;
+    background:rgba(37,99,235,.06) !important;
+    color:var(--primary) !important;
+    font-weight:800;
+    transition:.2s ease;
+}
+
+.contacts-extra .contact-card button:hover{
+    background:var(--primary) !important;
+    color:white !important;
+    transform:translateX(3px);
+}
+
+.dark .contact-card{
+    background:linear-gradient(145deg,rgba(20,35,58,.98),rgba(14,27,47,.96));
+    border-color:rgba(148,163,184,.12);
+    box-shadow:0 16px 38px rgba(0,0,0,.22);
+}
+
+.dark .contact-card h3{
+    color:white;
+}
+
+.dark .contacts-extra .contact-card button{
+    background:rgba(59,130,246,.12) !important;
+    border-color:rgba(59,130,246,.2) !important;
+}
+
+.contact-card p{word-break:break-word;}
+
+@media(max-width:1000px){
+    .contacts-grid{grid-template-columns:repeat(2,1fr);}
+    .contacts-extra{grid-template-columns:1fr 1fr;}
+}
+
+@media(max-width:650px){
+    .contacts-grid,.contacts-extra{grid-template-columns:1fr;}
+    .contact-card{padding:24px 18px;}
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:17px 0;
+    border-bottom:1px solid var(--border);
+    color:var(--text);
+}
+
+.setting button{
+    padding:9px 15px;
+    border-radius:10px;
+    background:#edf3ff;
+    color:var(--primary);
+    font-weight:800;
+}
+
+.languages{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.languages button{
+    padding:10px 13px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+}
+
+/* ================= MODERN SETTINGS ================= */
+.settings-modern{max-width:980px;margin:30px auto 70px;display:grid;gap:18px}.settings-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:20px;padding:28px;border:1px solid var(--border);border-radius:28px;background:linear-gradient(135deg,#2563eb,#1d4ed8 55%,#10213d);color:#fff;box-shadow:0 20px 55px rgba(37,99,235,.22)}.settings-hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-100px;background:rgba(255,255,255,.12)}.settings-icon{width:66px;height:66px;display:grid;place-items:center;border-radius:20px;background:rgba(255,255,255,.16);font-size:31px;backdrop-filter:blur(10px);flex:none}.settings-hero small{letter-spacing:2px;font-weight:900;opacity:.75}.settings-hero h2{margin:5px 0;font-size:30px;color:#fff}.settings-hero p{margin:0;color:rgba(255,255,255,.78)}.settings-section-card{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:24px;box-shadow:0 15px 40px rgba(30,50,80,.08)}.settings-section-title{display:flex;align-items:center;gap:14px;margin-bottom:18px}.settings-section-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#edf3ff;font-size:23px}.settings-section-title h3{margin:0;color:var(--dark);font-size:18px}.settings-section-title p{margin:3px 0 0;color:var(--muted);font-size:13px}.setting-modern{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid var(--border);font-weight:800;color:var(--text)}.setting-switch{border:0!important;padding:10px 18px!important;border-radius:14px!important;background:#edf3ff!important;color:var(--primary)!important;font-weight:900;cursor:pointer;transition:.2s}.setting-switch:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,.15)}.language-grid{display:grid!important;grid-template-columns:repeat(5,1fr);gap:12px!important;margin-top:0!important}.language-grid button{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:9px;text-align:left;min-height:64px;padding:12px 13px!important;border:1px solid var(--border)!important;border-radius:17px!important;background:var(--card)!important;color:var(--text);cursor:pointer;transition:.22s}.language-grid button span{font-size:24px}.language-grid button b{font-size:13px}.language-grid button small{font-size:9px;color:var(--muted);font-weight:900}.language-grid button:hover{transform:translateY(-3px);border-color:var(--primary)!important;box-shadow:0 10px 24px rgba(37,99,235,.12)}.language-grid button.active{background:#edf3ff!important;border-color:var(--primary)!important;box-shadow:0 0 0 2px rgba(37,99,235,.1);color:var(--primary)}.language-current{margin-top:16px;padding:12px 15px;border-radius:14px;background:rgba(37,99,235,.07);color:var(--primary);font-weight:900;text-align:center}.dark .settings-section-icon{background:rgba(59,130,246,.14)}.dark .language-grid button.active{background:rgba(59,130,246,.14)!important}@media(max-width:800px){.language-grid{grid-template-columns:repeat(2,1fr)!important}.settings-modern{margin:20px 0 60px}.settings-hero h2{font-size:24px}}@media(max-width:480px){.language-grid{grid-template-columns:1fr!important}.settings-hero{padding:22px}.settings-icon{width:54px;height:54px;font-size:25px}.settings-section-card{padding:18px}}
+
+/* ================= BOTTOM MENU ================= */
+
+.bottom-menu{
+    position:fixed;
+    z-index:2000;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,.93);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--border);
+    box-shadow:0 18px 50px rgba(30,50,80,.18);
+    border-radius:24px;
+    padding:9px;
+    display:flex;
+    gap:5px;
+}
+
+.dark .bottom-menu{
+    background:rgba(18,31,52,.94);
+}
+
+.bottom-button{
+    min-width:95px;
+    padding:10px 12px;
+    border-radius:17px;
+    background:transparent;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    font-weight:800;
+}
+
+.bottom-button span{
+    font-size:22px;
+}
+
+.bottom-button.active{
+    color:var(--primary);
+    background:#edf3ff;
+}
+
+.bottom-button small{
+    font-size:11px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#101d31;
+    color:white;
+    padding:50px 6% 20px;
+}
+
+.footer-container{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1.5fr;
+    gap:35px;
+}
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+}
+
+.footer-logo .logo-icon{
+    width:40px;
+    height:40px;
+    font-size:24px;
+}
+
+.footer-column p{
+    color:#9eacc0;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.footer-column h4{
+    margin-bottom:15px;
+}
+
+.footer-column button,
+.footer-column span{
+    display:block;
+    color:#aebbd0;
+    background:transparent;
+    padding:5px 0;
+    text-align:left;
+}
+
+.copyright{
+    border-top:1px solid #29364a;
+    margin-top:35px;
+    padding-top:18px;
+    text-align:center;
+    color:#8391a5;
+    font-size:13px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+}
+
+.modal.hidden{
+    display:none;
+}
+
+.modal-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(7,18,35,.67);
+    backdrop-filter:blur(8px);
+}
+
+.register-modal,
+.house-modal{
+    position:relative;
+    z-index:2;
+    width:min(500px,92%);
+    max-height:90vh;
+    overflow:auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:35px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 30px 100px rgba(0,0,0,.3);
+}
+
+.modal-close{
+    position:absolute;
+    right:18px;
+    top:15px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#edf2f8;
+    color:#65748a;
+    font-size:25px;
+}
+
+.register-icon{
+    width:70px;
+    height:70px;
+    display:grid;
+    place-items:center;
+    border-radius:20px;
+    background:#edf3ff;
+    font-size:32px;
+    margin:auto;
+}
+
+.modal-label{
+    color:var(--primary);
+    text-align:center;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-top:15px;
+}
+
+.register-modal h2{
+    color:var(--dark);
+    text-align:center;
+    font-size:30px;
+    margin:8px 0;
+}
+
+.register-modal>p{
+    color:var(--muted);
+    text-align:center;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+#registerForm label{
+    display:block;
+    color:var(--text);
+    font-weight:800;
+    margin-top:13px;
+}
+
+#registerForm input{
+    width:100%;
+    margin-top:7px;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:0;
+    background:var(--bg);
+    color:var(--text);
+}
+
+#registerForm input:focus{
+    border-color:var(--primary);
+}
+
+.register-submit{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border-radius:13px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    font-weight:900;
+}
+
+/* ================= GOOGLE ================= */
+
+.google-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:22px 0 16px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.google-divider-line{
+    height:1px;
+    flex:1;
+    background:var(--border);
+}
+
+.google-login-button{
+    width:100%;
+    min-height:52px;
+    padding:13px 18px;
+    border-radius:14px;
+    background:#ffffff;
+    color:#24344d;
+    border:1px solid #d8e0eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-size:15px;
+    font-weight:800;
+    box-shadow:0 5px 18px rgba(20,40,70,.08);
+    transition:.2s ease;
+}
+
+.google-login-button:hover{
+    background:#f8fafc;
+    border-color:#b9c6d8;
+    transform:translateY(-1px);
+    box-shadow:0 8px 22px rgba(20,40,70,.12);
+}
+
+.google-logo{
+    width:24px;
+    height:24px;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+    font-weight:900;
+    font-family:Arial,sans-serif;
+    color:#4285f4;
+}
+
+.google-login-text{
+    line-height:1;
+}
+
+/* ================= HOUSE MODAL ================= */
+
+.house-modal{
+    width:min(800px,94%);
+}
+
+.modal-house-image{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.house-modal h2{
+    color:var(--dark);
+    margin:20px 0 8px;
+}
+
+.modal-price{
+    color:var(--primary);
+    font-size:25px;
+    font-weight:900;
+    margin:12px 0;
+}
+
+.modal-description{
+    color:var(--muted);
+    line-height:1.7;
+    margin:15px 0;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.modal-actions button{
+    padding:12px 16px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+.compare-button{
+    background:#fff4d6;
+    color:#9a6a00;
+}
+
+.share-button{
+    background:#e9f7ee;
+    color:#16803a;
+}
+
+.qr-button{
+    background:#edf3ff;
+    color:var(--primary);
+}
+
+#qrcode{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:110px;
+    z-index:9000;
+    background:#10213d;
+    color:white;
+    padding:14px 20px;
+    border-radius:14px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    transform:translateY(30px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ================= COMPARE ================= */
+
+.compare-bar{
+    position:fixed;
+    left:50%;
+    bottom:105px;
+    transform:translateX(-50%);
+    z-index:1500;
+    background:var(--card);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    padding:13px 18px;
+    border-radius:17px;
+    display:none;
+    align-items:center;
+    gap:15px;
+}
+
+.compare-bar.show{
+    display:flex;
+}
+
+.compare-bar button{
+    background:var(--primary);
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:800;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1050px){
+
+    .main-nav{
+        display:none;
+    }
+
+    .houses-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .contacts-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-right{
+        max-width:650px;
+    }
+}
+
+@media(max-width:700px){
+
+    .header{
+        height:70px;
+        padding:0 15px;
+    }
+
+    .logo{
+        min-width:auto;
+    }
+
+    .logo-subtitle{
+        display:none;
+    }
+
+    .header-right .search-box{
+        display:none;
+    }
+
+    .register-button{
+        padding:10px 12px;
+        font-size:12px;
+    }
+
+    main{
+        padding:20px 15px 120px;
+    }
+
+    .hero{
+        min-height:auto;
+        gap:30px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero-statistics{
+        gap:20px;
+    }
+
+    .hero-house-image{
+        height:260px;
+    }
+
+    .houses-grid,
+    .benefits,
+    .contacts-grid,
+    .about-container{
+        grid-template-columns:1fr;
+    }
+
+    .about-picture{
+        height:300px;
+    }
+
+    .about-text h2{
+        font-size:32px;
+    }
+
+    .bottom-menu{
+        width:calc(100% - 15px);
+        justify-content:space-around;
+        bottom:8px;
+    }
+
+    .bottom-button{
+        min-width:auto;
+        flex:1;
+        padding:8px 4px;
+    }
+
+    .bottom-button small{
+        font-size:9px;
+    }
+
+    .bottom-button span{
+        font-size:19px;
+    }
+
+    .footer-container{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .register-modal,
+    .house-modal{
+        padding:25px 18px;
+    }
+}
+
+@media(max-width:430px){
+
+    .footer-container{
+        grid-template-columns:1fr;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .hero-statistics{
+        flex-wrap:wrap;
+    }
+
+    .large-search{
+        flex-direction:column;
+    }
+
+    .large-search button{
+        padding:13px;
+    }
+}
+
+
+/* ================= RANDOM HOUSE ================= */
+.random-house-section{margin:35px 0;padding:28px;border-radius:30px;background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.08));border:1px solid rgba(37,99,235,.14);position:relative;overflow:hidden}
+.random-house-section:before,.random-house-section:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
+.random-house-section:before{width:180px;height:180px;background:rgba(37,99,235,.12);right:-60px;top:-80px}
+.random-house-section:after{width:130px;height:130px;background:rgba(124,58,237,.10);left:-55px;bottom:-70px}
+.random-house-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+.random-house-head small{color:var(--primary);font-weight:900;letter-spacing:2px}
+.random-house-head h2{color:var(--dark);margin-top:5px;font-size:30px}
+.random-house-head p{color:var(--muted);margin-top:7px}
+.random-house-button{border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--primary),#7c3aed);padding:14px 20px;border-radius:16px;font-weight:900;box-shadow:0 12px 30px rgba(37,99,235,.22);transition:.25s;white-space:nowrap}
+.random-house-button:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 34px rgba(37,99,235,.28)}
+.random-house-result{position:relative;z-index:1;display:grid;grid-template-columns:280px 1fr;gap:22px;background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.8);border-radius:24px;padding:14px;align-items:center;min-height:180px}
+.random-house-result.hidden{display:none}
+.random-house-result.show{animation:randomHouseIn .5s ease}
+.random-house-image{height:210px;border-radius:18px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.random-house-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.28))}
+.random-house-info{padding:10px 12px}
+.random-house-tag{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(37,99,235,.10);color:var(--primary);font-size:12px;font-weight:900;margin-bottom:10px}
+.random-house-info h3{font-size:26px;color:var(--dark);margin-bottom:8px}
+.random-house-location{color:var(--muted);margin-bottom:12px}
+.random-house-details{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
+.random-house-details span{padding:8px 10px;border-radius:11px;background:var(--bg);font-size:13px;font-weight:800;color:var(--text)}
+.random-house-actions{display:flex;gap:10px;flex-wrap:wrap}
+.random-open{border:0;cursor:pointer;padding:11px 16px;border-radius:13px;background:var(--primary);color:#fff;font-weight:900}
+@keyframes randomHouseIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+body.dark .random-house-section{background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(124,58,237,.14));border-color:rgba(96,165,250,.16)}
+body.dark .random-house-result{background:rgba(18,31,52,.82);border-color:rgba(255,255,255,.06)}
+@media(max-width:700px){.random-house-head{align-items:flex-start;flex-direction:column}.random-house-button{width:100%}.random-house-result{grid-template-columns:1fr}.random-house-image{height:220px}.random-house-info h3{font-size:22px}}
+
+/* ================= CART ================= */
+.cart-button{
+    position:fixed;
+    right:24px;
+    bottom:105px;
+    z-index:2500;
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    box-shadow:0 14px 35px rgba(37,99,235,.30);
+    cursor:pointer;
+    transition:.2s;
+}
+.cart-button:hover{transform:translateY(-3px)}
+.cart-count{
+    position:absolute;
+    right:-5px;
+    top:-7px;
+    min-width:23px;
+    height:23px;
+    padding:0 6px;
+    border-radius:20px;
+    background:#ef4444;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
+    border:3px solid var(--card);
+}
+.cart-panel{
+    position:fixed;
+    top:0;
+    right:-430px;
+    width:min(430px,94vw);
+    height:100vh;
+    z-index:6000;
+    background:var(--card);
+    border-left:1px solid var(--border);
+    box-shadow:-20px 0 70px rgba(0,0,0,.20);
+    display:flex;
+    flex-direction:column;
+    transition:right .3s ease;
+}
+.cart-panel.open{right:0}
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    z-index:5500;
+    background:rgba(7,18,35,.55);
+    backdrop-filter:blur(4px);
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+}
+.cart-overlay.show{opacity:1;visibility:visible}
+.cart-header{
+    padding:22px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+.cart-header h2{color:var(--dark);font-size:25px}
+.cart-header button{
+    width:40px;height:40px;border-radius:12px;
+    background:#edf2f8;color:#64748b;font-size:25px;
+}
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:16px;
+}
+.cart-empty{
+    min-height:55vh;
+    display:grid;
+    place-items:center;
+    align-content:center;
+    text-align:center;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+}
+.cart-item{
+    display:grid;
+    grid-template-columns:78px 1fr;
+    gap:12px;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:var(--bg);
+}
+.cart-item img{
+    width:78px;height:78px;object-fit:cover;border-radius:13px;
+}
+.cart-item-info h3{
+    color:var(--dark);
+    font-size:16px;
+    margin-bottom:5px;
+}
+.cart-item-info p{
+    color:var(--primary);
+    font-weight:900;
+    font-size:14px;
+}
+.cart-item-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:9px;
+}
+.cart-qty{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+.cart-qty button{
+    width:28px;height:28px;border-radius:8px;
+    background:var(--card);border:1px solid var(--border);
+    color:var(--dark);font-weight:900;
+}
+.cart-remove{
+    background:#fee2e2;
+    color:#dc2626;
+    padding:7px 9px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:800;
+}
+.cart-footer{
+    border-top:1px solid var(--border);
+    padding:18px;
+    background:var(--card);
+}
+.cart-total-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:13px;
+}
+.cart-total-row span{color:var(--muted)}
+.cart-total-row strong{color:var(--primary);font-size:22px}
+.clear-cart{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    background:#fee2e2;
+    color:#dc2626;
+    font-weight:900;
+}
+.add-cart-button{
+    background:#edf3ff;
+    color:var(--primary);
+    padding:10px 13px;
+    border-radius:11px;
+    font-weight:800;
+}
+.add-cart-button.added{
+    background:#dcfce7;
+    color:#15803d;
+}
+@media(max-width:700px){
+    .cart-button{right:15px;bottom:88px}
+}
+
+/* ================= RECENTLY VIEWED ================= */
+
+/* ===== BEAUTIFUL HISTORY ===== */
+.history-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;margin:10px 0 24px;padding:30px 32px;border:1px solid rgba(37,99,235,.16);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,246,255,.92));box-shadow:0 18px 55px rgba(30,64,175,.12)}
+.history-hero-glow{position:absolute;width:220px;height:220px;right:-70px;top:-100px;border-radius:50%;background:rgba(37,99,235,.13);filter:blur(5px)}
+.history-icon{position:relative;z-index:1;width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-size:38px;font-weight:900;color:#fff;background:linear-gradient(145deg,#2563eb,#1d4ed8);box-shadow:0 14px 30px rgba(37,99,235,.28)}
+.history-heading{position:relative;z-index:1}.history-heading small{font-size:11px;letter-spacing:3px;font-weight:900;color:#2563eb}.history-heading h2{margin:4px 0 7px;font-size:34px;line-height:1.1;color:var(--dark)}.history-heading p{max-width:620px;color:var(--muted);line-height:1.6;font-weight:600}
+.history-stat{position:relative;z-index:1;min-width:130px;text-align:center;padding:16px 20px;border-radius:20px;background:rgba(255,255,255,.78);border:1px solid rgba(37,99,235,.12)}.history-stat strong{display:block;font-size:32px;color:#2563eb;line-height:1}.history-stat span{display:block;margin-top:7px;font-size:12px;color:var(--muted);font-weight:800}
+.history-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 14px;padding:5px 3px}.history-toolbar-title{display:flex;align-items:center;gap:11px}.history-toolbar-title b{display:block;color:var(--dark);font-size:16px}.history-toolbar-title small{display:block;color:var(--muted);font-weight:600;margin-top:2px}.history-live-dot{width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.11)}
+.history-line{height:2px;background:linear-gradient(90deg,#2563eb 0%,rgba(37,99,235,.12) 45%,transparent 100%);margin-bottom:22px;border-radius:99px}.history-line span{display:block;width:90px;height:2px;background:#2563eb;border-radius:99px}.history-grid .house-card{animation:historyCardIn .45s ease both}
+.history-empty-tip{margin:30px auto 0;max-width:620px;padding:20px 24px;border:1px dashed rgba(37,99,235,.25);border-radius:20px;background:rgba(37,99,235,.035);text-align:center;color:var(--muted)}.history-empty-tip div{font-size:27px;margin-bottom:5px;color:#2563eb}.history-empty-tip p{font-weight:600;line-height:1.5}
+.recent-clear{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(239,68,68,.15);background:rgba(239,68,68,.07);color:#dc2626;padding:11px 16px;border-radius:13px;font-weight:900;cursor:pointer;transition:.25s}.recent-clear:hover{transform:translateY(-2px);background:rgba(239,68,68,.12);box-shadow:0 8px 20px rgba(239,68,68,.10)}
+@keyframes historyCardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+body.dark .history-hero{background:linear-gradient(135deg,rgba(15,31,56,.98),rgba(18,39,70,.96));border-color:rgba(96,165,250,.14);box-shadow:0 18px 55px rgba(0,0,0,.24)}body.dark .history-heading h2,body.dark .history-toolbar-title b{color:#fff}body.dark .history-stat{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}body.dark .history-empty-tip{background:rgba(96,165,250,.05);border-color:rgba(96,165,250,.2)}
+@media(max-width:700px){.history-hero{grid-template-columns:auto 1fr;gap:16px;padding:22px 18px;border-radius:22px}.history-icon{width:58px;height:58px;border-radius:18px;font-size:30px}.history-heading h2{font-size:26px}.history-heading p{font-size:13px}.history-stat{grid-column:1/-1;min-width:0;padding:13px}.history-stat strong{font-size:26px}.history-toolbar{align-items:flex-start;flex-direction:column}.recent-clear{width:100%;justify-content:center}}
+
+.recent-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.recent-clear{
+    border:0;
+    background:#edf3ff;
+    color:var(--primary);
+    padding:10px 15px;
+    border-radius:12px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.dark .recent-clear{
+    background:#1d2d46;
+    color:#d7e4ff;
+}
+
+.recent-empty{
+    grid-column:1/-1;
+    padding:35px;
+    text-align:center;
+    border:1px dashed var(--border);
+    border-radius:20px;
+    color:var(--muted);
+    background:var(--card);
+}
+
+.recent-badge{
+    position:absolute;
+    left:13px;
+    top:13px;
+    padding:7px 10px;
+    border-radius:10px;
+    background:rgba(16,29,49,.78);
+    color:white;
+    font-size:11px;
+    font-weight:900;
+    backdrop-filter:blur(8px);
+}
+
+
+
+/* ================= SMART MATCH PREMIUM ================= */
+.smart-match-section{
+    position:relative;
+    margin:10px 0 55px;
+    padding:34px;
+    border-radius:32px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#0f2344 0%,#173d72 55%,#2563eb 100%);
+    box-shadow:0 28px 70px rgba(24,65,120,.24);
+    color:#fff;
+}
+.smart-match-section:before,
+.smart-match-section:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(2px);
+}
+.smart-match-section:before{
+    width:240px;height:240px;right:-70px;top:-90px;
+    background:rgba(96,165,250,.22);
+}
+.smart-match-section:after{
+    width:190px;height:190px;left:-70px;bottom:-100px;
+    background:rgba(255,255,255,.08);
+}
+.smart-match-inner{position:relative;z-index:2;}
+.smart-match-top{
+    display:flex;align-items:center;justify-content:space-between;gap:25px;margin-bottom:25px;
+}
+.smart-match-title-wrap{display:flex;align-items:center;gap:17px;}
+.smart-match-icon{
+    width:62px;height:62px;border-radius:20px;
+    display:grid;place-items:center;font-size:29px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:inset 0 1px rgba(255,255,255,.2),0 12px 30px rgba(0,0,0,.15);
+}
+.smart-match-title-wrap small{display:block;color:#bfdbfe;font-weight:900;letter-spacing:2px;font-size:11px;margin-bottom:6px;}
+.smart-match-title-wrap h2{font-size:30px;color:#fff;line-height:1.15;}
+.smart-match-subtitle{margin-top:7px;color:#dbeafe;line-height:1.5;max-width:680px;}
+.smart-match-chip{
+    padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.16);color:#eaf2ff;font-weight:800;white-space:nowrap;
+}
+.smart-match-form{
+    display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px;
+    padding:14px;border-radius:23px;background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(14px);
+}
+.smart-field label{display:block;font-size:11px;font-weight:900;color:#bfdbfe;margin:0 0 7px 5px;text-transform:uppercase;letter-spacing:.7px;}
+.smart-field select,
+.smart-field input{
+    width:100%;height:48px;border:1px solid rgba(255,255,255,.16);outline:0;
+    border-radius:14px;padding:0 13px;background:rgba(8,25,49,.55);color:#fff;font-weight:700;
+}
+.smart-field select option{color:#172033;background:#fff;}
+.smart-match-button{
+    align-self:end;height:48px;padding:0 20px;border-radius:14px;background:#fff;color:#1450c7;font-weight:900;
+    box-shadow:0 10px 25px rgba(0,0,0,.16);transition:.2s;
+}
+.smart-match-button:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.22);}
+.smart-result{display:none;margin-top:18px;padding:18px;border-radius:22px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.15);}
+.smart-result.show{display:block;animation:pageIn .3s ease;}
+.smart-result-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;}
+.smart-result-head strong{font-size:18px;color:#fff;}
+.smart-score{padding:8px 12px;border-radius:999px;background:#dcfce7;color:#15803d;font-weight:900;font-size:12px;}
+.smart-results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.smart-result-card{display:flex;gap:12px;align-items:center;padding:11px;border-radius:18px;background:rgba(255,255,255,.96);color:#172033;}
+.smart-result-image{width:76px;height:66px;flex:0 0 76px;border-radius:14px;background-size:cover;background-position:center;}
+.smart-result-card h4{font-size:14px;margin-bottom:5px;}
+.smart-result-card p{font-size:12px;color:#71809a;line-height:1.4;}
+.smart-result-card button{margin-top:7px;background:#edf3ff;color:#2563eb;padding:7px 10px;border-radius:9px;font-size:11px;font-weight:900;}
+.smart-no-result{color:#dbeafe;line-height:1.6;}
+
+/* ================= BEAUTIFUL CLOCK ================= */
+.clock-icon{
+    position:relative;display:inline-block;width:18px;height:18px;border:2px solid currentColor;border-radius:50%;vertical-align:-4px;margin-right:4px;
+}
+.clock-icon:before{content:"";position:absolute;width:2px;height:6px;background:currentColor;left:7px;top:3px;border-radius:2px;transform-origin:bottom;}
+.clock-icon:after{content:"";position:absolute;width:5px;height:2px;background:currentColor;left:7px;top:9px;border-radius:2px;transform:rotate(25deg);transform-origin:left center;}
+.recent-badge .clock-icon{width:14px;height:14px;border-width:1.5px;vertical-align:-2px;}
+.recent-badge .clock-icon:before{width:1.5px;height:4px;left:5.5px;top:2px;}
+.recent-badge .clock-icon:after{width:4px;height:1.5px;left:5.5px;top:7px;}
+.recent-empty .clock-icon{width:34px;height:34px;margin-bottom:12px;vertical-align:middle;}
+.recent-empty .clock-icon:before{width:2px;height:10px;left:14px;top:6px;}
+.recent-empty .clock-icon:after{width:9px;height:2px;left:14px;top:16px;}
+
+@media(max-width:1000px){
+    .smart-match-form{grid-template-columns:1fr 1fr;}
+    .smart-match-button{width:100%;}
+    .smart-results-grid{grid-template-columns:1fr;}
+}
+@media(max-width:700px){
+    .smart-match-section{padding:22px 17px;border-radius:25px;margin-bottom:38px;}
+    .smart-match-top{align-items:flex-start;}
+    .smart-match-title-wrap h2{font-size:24px;}
+    .smart-match-icon{width:52px;height:52px;font-size:24px;}
+    .smart-match-chip{display:none;}
+    .smart-match-form{grid-template-columns:1fr;}
+}
+
+
+
+/* ================= COMPACT MODERN DESKTOP ================= */
+:root{
+    --compact-max:1240px;
+}
+body{
+    font-size:14px;
+}
+.header{
+    height:68px;
+    padding:0 3%;
+}
+.logo{
+    min-width:170px;
+    gap:9px;
+}
+.logo-icon{
+    width:40px;height:40px;border-radius:12px;font-size:24px;
+}
+.logo-title{font-size:21px}
+.logo-subtitle{font-size:10px}
+.main-nav{gap:3px}
+.nav-link{padding:9px 12px;font-size:13px}
+.header-right{gap:8px}
+.search-box input{width:155px;padding:10px;font-size:13px}
+.search-box button{width:40px}
+.register-button{padding:10px 14px;border-radius:11px;font-size:13px}
+
+main{
+    max-width:var(--compact-max);
+    padding:24px 3% 110px;
+}
+.hero{
+    grid-template-columns:1fr .82fr;
+    gap:28px;
+    min-height:400px;
+}
+.hero-label{margin-bottom:12px;font-size:12px}
+.hero h1{
+    font-size:clamp(34px,4vw,54px);
+    margin-bottom:15px;
+}
+.hero p{font-size:15px;line-height:1.55}
+.hero-buttons{margin:20px 0;gap:9px}
+.primary-button,.secondary-button{padding:12px 17px;border-radius:12px;font-size:13px}
+.hero-statistics{gap:26px}
+.stat strong{font-size:21px}
+.stat span{font-size:11px}
+.hero-house-card{padding:10px;border-radius:22px}
+.hero-house-image{height:290px;border-radius:17px}
+.hero-house-info{padding:14px 6px 5px}
+
+.home-section,.why-section{margin-top:48px}
+.section-header{margin-bottom:18px}
+.section-header h2,.center-title h2,.page-heading h2{font-size:27px}
+
+.houses-grid{gap:16px}
+.house-card{border-radius:18px}
+.house-image{height:205px}
+.house-content{padding:14px}
+.house-content h3{font-size:18px;margin-bottom:5px}
+.house-location{font-size:12px;margin-bottom:10px}
+.house-details{gap:6px;margin-bottom:12px}
+.detail{padding:6px 8px;font-size:11px;border-radius:8px}
+.price{font-size:18px}
+.details-button,.add-cart-button{padding:8px 11px;font-size:12px}
+.house-favorite{width:36px;height:36px;font-size:17px;right:10px;top:10px}
+
+.benefits{gap:15px}
+.benefit{border-radius:18px;padding:22px}
+.benefit-icon{font-size:32px;margin-bottom:10px}
+.benefit p{font-size:13px}
+
+.page-heading{padding:24px 0 18px}
+.page-heading p{font-size:13px;margin-top:7px}
+.large-search{max-width:700px;margin-bottom:20px}
+.large-search input{padding:11px;font-size:14px}
+.large-search button{padding:0 19px}
+.filter{padding:9px 13px;font-size:12px}
+
+.profile-box,.settings-box{
+    max-width:620px;
+    margin:25px auto;
+    border-radius:22px;
+    padding:30px;
+}
+.profile-avatar{width:78px;height:78px;font-size:36px}
+
+.about-container{gap:30px;margin-top:28px}
+.about-picture{height:360px;border-radius:22px}
+.about-text h2{font-size:34px;margin:10px 0 14px}
+.about-text p{font-size:14px;line-height:1.65}
+
+.contacts-grid{gap:13px;margin-top:20px}
+.contact-card{padding:20px 15px;border-radius:19px}
+.contact-card > div:first-child{width:50px;height:50px;border-radius:15px;font-size:23px;margin-bottom:12px}
+.contact-card h3{font-size:15px}
+.contact-card p{font-size:12px}
+
+.settings-modern{max-width:850px;margin:20px auto 50px;gap:13px}
+.settings-hero{padding:22px;border-radius:22px}
+.settings-icon{width:55px;height:55px;border-radius:16px;font-size:26px}
+.settings-hero h2{font-size:25px}
+.settings-section-card{padding:19px;border-radius:21px}
+.language-grid{gap:8px!important}
+.language-grid button{min-height:55px;padding:9px 10px!important;border-radius:14px!important}
+
+.bottom-menu{
+    bottom:12px;
+    padding:6px;
+    border-radius:18px;
+}
+.bottom-button{
+    min-width:78px;
+    padding:8px 9px;
+    border-radius:13px;
+}
+.bottom-button span{font-size:18px}
+.bottom-button small{font-size:10px}
+
+footer{padding:35px 4% 16px}
+.footer-container{max-width:1150px;gap:24px}
+.footer-logo{font-size:20px}
+.footer-logo .logo-icon{width:34px;height:34px;font-size:20px}
+
+.random-house-section{
+    margin:28px 0;
+    padding:22px;
+    border-radius:22px;
+}
+.random-house-head{margin-bottom:14px}
+.random-house-head h2{font-size:25px}
+.random-house-result{
+    grid-template-columns:220px 1fr;
+    gap:16px;
+    min-height:150px;
+    border-radius:19px;
+}
+.random-house-image{height:165px}
+.random-house-info h3{font-size:22px}
+
+.smart-match-section{
+    margin:8px 0 38px;
+    padding:25px;
+    border-radius:24px;
+}
+
+.cart-button{
+    right:18px;bottom:92px;
+    width:50px;height:50px;border-radius:15px;font-size:23px;
+}
+.cart-panel{width:min(390px,94vw)}
+.cart-header{padding:18px}
+.cart-header h2{font-size:22px}
+
+.history-hero{
+    gap:16px;
+    margin:8px 0 18px;
+    padding:22px 24px;
+    border-radius:22px;
+}
+.history-icon{width:58px;height:58px;border-radius:17px;font-size:30px}
+.history-heading h2{font-size:27px}
+.history-stat{min-width:105px;padding:12px 14px}
+.history-stat strong{font-size:26px}
+
+.modal-house-image{height:250px}
+.register-modal,.house-modal{border-radius:22px;padding:26px}
+.house-modal{width:min(720px,94%)}
+
+/* Keep desktop content compact; switch to the original mobile behavior below. */
+@media(min-width:1051px){
+    .houses-grid{grid-template-columns:repeat(3,1fr)}
+    .contacts-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:1050px){
+    .hero{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+    main{padding:18px 15px 115px}
+    .hero{gap:25px}
+    .hero h1{font-size:40px}
+    .house-image{height:220px}
+}
+
+</style>
+
+<style id="hacker-neon-theme">
+:root{--hack-green:#39ff88;--hack-cyan:#00e5ff;--hack-purple:#8b5cf6;--hack-bg:#050812}
+body{background-image:radial-gradient(circle at 15% 20%,rgba(0,229,255,.08),transparent 28%),radial-gradient(circle at 85% 80%,rgba(139,92,246,.08),transparent 30%),linear-gradient(rgba(57,255,136,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,136,.025) 1px,transparent 1px);background-size:auto,auto,32px 32px,32px 32px}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:linear-gradient(transparent 50%,rgba(57,255,136,.018) 50%);background-size:100% 4px;opacity:.35}
+button,.btn,.nav-btn,.action-btn{transition:.25s;position:relative;overflow:hidden}
+button:hover,.btn:hover,.nav-btn:hover,.action-btn:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(0,229,255,.28),0 0 32px rgba(57,255,136,.12)}
+.card,.house-card,.modal-content,.panel,.stat-card,.settings-card,.section-card{border-color:rgba(0,229,255,.18)!important;box-shadow:0 10px 35px rgba(0,0,0,.16),0 0 0 1px rgba(57,255,136,.035)}
+.house-card:hover,.card:hover{box-shadow:0 16px 45px rgba(0,0,0,.22),0 0 25px rgba(0,229,255,.14)}
+input,select,textarea{outline:none;transition:.2s}input:focus,select:focus,textarea:focus{border-color:var(--hack-cyan)!important;box-shadow:0 0 0 3px rgba(0,229,255,.1),0 0 16px rgba(0,229,255,.12)}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo" onclick="showPage('home')">
+
+        <div class="logo-icon">⌂</div>
+
+        <div>
+            <div class="logo-title">HomeLux</div>
+            <div class="logo-subtitle">Лучшие дома для вас</div>
+        </div>
+
+    </div>
+
+    <nav class="main-nav">
+
+        <button class="nav-link active" data-page="home">
+            Главная
+        </button>
+
+        <button class="nav-link" data-page="houses">
+            Дома
+        </button>
+
+        <button class="nav-link" data-page="about">
+            О нас
+        </button>
+
+        <button class="nav-link" data-page="contacts">
+            Контакты
+        </button>
+
+        <button class="nav-link" data-page="recent">
+            ↺ Кушодаҳои охир
+        </button>
+
+    </nav>
+
+    <div class="header-right">
+
+        <div class="search-box">
+
+            <input
+                id="topSearch"
+                type="text"
+                placeholder="Хона ё шаҳрро ҷустуҷӯ кун..."
+            >
+
+            <button id="topSearchButton">🔍</button>
+
+        </div>
+
+        <button
+            id="registerButton"
+            class="register-button"
+        >
+            👤 Регистрация
+        </button>
+
+    </div>
+
+</header>
+
+<main>
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-left">
+
+            <div class="hero-label">
+                HOME • LUXURY • LIFE
+            </div>
+
+            <h1>
+                Хонаи орзуи худро
+                <span>пайдо кун</span>
+            </h1>
+
+            <p>
+                Хонаҳои зебо ва замонавиро пайдо кун,
+                муқоиса намо ва беҳтарин вариантро интихоб кун.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-button"
+                    id="viewHouses"
+                >
+                    🏠 Дидани хонаҳо
+                </button>
+
+                <button
+                    class="secondary-button"
+                    data-page="about"
+                >
+                    Дар бораи мо
+                </button>
+
+            </div>
+
+            <div class="hero-statistics">
+
+                <div class="stat">
+                    <strong id="heroHouseCount">0</strong>
+                    <span>Хона</span>
+                </div>
+
+                <div class="stat">
+                    <strong id="favoriteCount">0</strong>
+                    <span>Дӯстдошта</span>
+                </div>
+
+                <div class="stat">
+                    <strong id="compareCount">0</strong>
+                    <span>Муқоиса</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="hero-house-card">
+
+                <div class="premium-label">
+                    ★ PREMIUM
+                </div>
+
+                <div class="hero-house-image"></div>
+
+                <div class="hero-house-info">
+
+                    <div>
+                        <h3>Luxury Residence</h3>
+                        <p>📍 Душанбе, Тоҷикистон</p>
+                    </div>
+
+                    <strong>$320 000</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SMART MATCH ================= -->
+    <section class="smart-match-section">
+        <div class="smart-match-inner">
+            <div class="smart-match-top">
+                <div class="smart-match-title-wrap">
+                    <div class="smart-match-icon">✦</div>
+                    <div>
+                        <small>SMART MATCH</small>
+                        <h2>Хонаи худро оқилона ёбед</h2>
+                        <p class="smart-match-subtitle">Шартҳои худро интихоб кунед — HomeLux хонаҳои мувофиқро барои шумо пайдо мекунад.</p>
+                    </div>
+                </div>
+                <div class="smart-match-chip">AI STYLE • FAST</div>
+            </div>
+
+            <div class="smart-match-form">
+                <div class="smart-field">
+                    <label>Шаҳр</label>
+                    <select id="smartCity">
+                        <option value="all">Ҳамаи шаҳрҳо</option>
+                        <option value="Душанбе">Душанбе</option>
+                        <option value="Ҳисор">Ҳисор</option>
+                        <option value="Варзоб">Варзоб</option>
+                        <option value="Хуҷанд">Хуҷанд</option>
+                    </select>
+                </div>
+                <div class="smart-field">
+                    <label>Буҷет</label>
+                    <select id="smartBudget">
+                        <option value="999999999">Ҳар гуна</option>
+                        <option value="150000">То $150k</option>
+                        <option value="200000">То $200k</option>
+                        <option value="250000">То $250k</option>
+                        <option value="300000">То $300k</option>
+                    </select>
+                </div>
+                <div class="smart-field">
+                    <label>Масоҳат</label>
+                    <select id="smartArea">
+                        <option value="0">Ҳар гуна</option>
+                        <option value="200">200+ м²</option>
+                        <option value="250">250+ м²</option>
+                        <option value="300">300+ м²</option>
+                        <option value="400">400+ м²</option>
+                    </select>
+                </div>
+                <div class="smart-field">
+                    <label>Услуб</label>
+                    <select id="smartStyle">
+                        <option value="all">Ҳар гуна</option>
+                        <option value="premium">Premium</option>
+                        <option value="modern">Modern</option>
+                        <option value="family">Family</option>
+                    </select>
+                </div>
+                <button class="smart-match-button" id="smartMatchButton" type="button">✨ Smart Match</button>
+            </div>
+
+            <div class="smart-result" id="smartResult"></div>
+        </div>
+    </section>
+
+
+
+    <section class="random-house-section">
+        <div class="random-house-head">
+            <div>
+                <small>LUCKY HOME</small>
+                <h2>🎁 Хонаи тасодуфӣ</h2>
+                <p>Бигзор HomeLux имрӯз барои ту як хона интихоб кунад.</p>
+            </div>
+            <button class="random-house-button" id="randomHouseButton">🎁 Интихоб кун</button>
+        </div>
+        <div id="randomHouseResult" class="random-house-result hidden"></div>
+    </section>
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+                <small>POPULAR</small>
+                <h2>🏠 Хонаҳои машҳур</h2>
+            </div>
+
+            <button
+                class="view-all"
+                data-page="houses"
+            >
+                Ҳамаашро бин →
+            </button>
+
+        </div>
+
+        <div id="homeHouses" class="houses-grid"></div>
+
+    </section>
+
+
+
+</section>
+
+<section id="search" class="page">
+
+    <div class="page-heading">
+
+        <small>SEARCH</small>
+
+        <h2>🔍 Ҷустуҷӯи хона</h2>
+
+        <p>
+            Номи хона ё шаҳрро ворид кунед.
+        </p>
+
+    </div>
+
+    <div class="large-search">
+
+        <input
+            id="bigSearch"
+            type="text"
+            placeholder="Масалан: Душанбе, Luxury, 250..."
+        >
+
+        <button id="bigSearchButton">
+            Ҷустуҷӯ
+        </button>
+
+    </div>
+
+    <div id="searchResults" class="houses-grid"></div>
+
+</section>
+
+<section id="houses" class="page">
+
+    <div class="page-heading">
+
+        <div class="homes-title-wrap">
+            <span class="homes-title-icon">⌂</span>
+            <div>
+                <small>HOMELUX COLLECTION</small>
+                <h2>Хонаҳои зебои шумо</h2>
+                <p>Аз байни беҳтарин хонаҳои замонавӣ варианти орзуятонро интихоб кунед.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="filters">
+
+        <button class="filter active" data-filter="all">
+            Ҳама
+        </button>
+
+        <button class="filter" data-filter="cheap">
+            То $150k
+        </button>
+
+        <button class="filter" data-filter="medium">
+            $150k – $250k
+        </button>
+
+        <button class="filter" data-filter="premium">
+            Premium
+        </button>
+
+    </div>
+
+    <div class="houses-grid" id="housesList"></div>
+
+</section>
+
+<section id="favorites" class="page">
+
+    <div class="page-heading">
+
+        <small>SAVED</small>
+
+        <h2>❤️ Дӯстдоштаҳо</h2>
+
+        <p>
+            Хонаҳои интихобкардаи шумо.
+        </p>
+
+    </div>
+
+    <div id="favoriteList" class="houses-grid"></div>
+
+</section>
+
+<section id="recent" class="page">
+
+    <div class="history-hero">
+        <div class="history-hero-glow"></div>
+        <div class="history-icon">↺</div>
+        <div class="history-heading">
+            <small>YOUR JOURNEY</small>
+            <h2>Таърихи дидан</h2>
+            <p>Ҳамаи хонаҳое, ки ба наздикӣ тамошо кардед, дар ҳамин ҷо нигоҳ дошта мешаванд.</p>
+        </div>
+        <div class="history-stat">
+            <strong id="recentCount">0</strong>
+            <span>хона дида шуд</span>
+        </div>
+    </div>
+
+    <div class="history-toolbar">
+        <div class="history-toolbar-title">
+            <span class="history-live-dot"></span>
+            <div><b>Ба наздикӣ</b><small>Интихобҳои охирини шумо</small></div>
+        </div>
+        <button class="recent-clear" id="clearRecent"><span>⌫</span> Пок кардани таърих</button>
+    </div>
+
+    <div class="history-line"><span></span></div>
+    <div id="recentList" class="houses-grid history-grid"></div>
+
+    <div class="history-empty-tip">
+        <div>⌂</div>
+        <p>Хонаҳоро кушоед — онҳо ба таърихи дидани шумо автоматӣ илова мешаванд.</p>
+    </div>
+
+</section>
+
+<section id="profile" class="page">
+
+    <div class="profile-box">
+
+        <div
+            class="profile-avatar"
+            id="profileAvatar"
+        >
+            👤
+        </div>
+
+        <small>MY PROFILE</small>
+
+        <h2 id="profileName">
+            Хуш омадед ба HomeLux
+        </h2>
+
+        <p id="profileEmail">
+            Барои сохтани профил регистрация кунед.
+        </p>
+
+        <button
+            id="profileRegister"
+            class="primary-button"
+        >
+            Регистрация
+        </button>
+
+    </div>
+
+</section>
+
+<section id="about" class="page">
+
+    <div class="about-container">
+
+        <div class="about-picture"></div>
+
+        <div class="about-text">
+
+            <small>ABOUT US</small>
+
+            <h2>
+                HomeLux —
+                шарики шумо дар
+                интихоби хона
+            </h2>
+
+            <p>
+                HomeLux платформаест барои пайдо кардан,
+                ҷустуҷӯ кардан ва нигоҳ доштани хонаҳои
+                зебо ва замонавӣ.
+            </p>
+
+            <div class="about-list">
+
+                <div>✓ Маълумоти пурраи хона</div>
+                <div>✓ Масоҳат ва ошёна</div>
+                <div>✓ Ҷойгиршавӣ</div>
+                <div>✓ QR Code</div>
+                <div>✓ Дӯстдоштаҳо</div>
+                <div>✓ Муқоиса</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <section class="why-section">
+
+        <div class="center-title">
+
+            <small>WHY HOMELUX</small>
+
+            <h2>Чаро HomeLux?</h2>
+
+            <p>
+                Ҳама чиз барои интихоби осон ва боваринок.
+            </p>
+
+        </div>
+
+        <div class="benefits">
+
+            <div class="benefit">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Бехатар ва боэътимод</h3>
+                <p>
+                    Маълумоти хонаҳо дар як ҷо
+                    бо тартиб ва бо таваҷҷӯҳ ба бехатарӣ нигоҳ дошта мешавад.
+                </p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">💎</div>
+                <h3>Интихоби зебо</h3>
+                <p>
+                    Хонаҳои замонавӣ бо тарҳи
+                    қулай ва зебо.
+                </p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">⚡</div>
+                <h3>Осон ва зуд</h3>
+                <p>
+                    Ҷустуҷӯ ва нигоҳ доштани
+                    хонаҳо хеле осон аст.
+                </p>
+            </div>
+
+        </div>
+
+    </section></section>
+
+
+
+<section id="contacts" class="page">
+
+    <div class="page-heading">
+
+        <small>CONTACTS</small>
+
+        <h2>📞 Контакты</h2>
+
+        <p>
+            Барои саволҳо ба мо муроҷиат кунед.
+        </p>
+
+    </div>
+
+    <div class="contacts-grid">
+
+        <div class="contact-card">
+            <div>📱</div>
+            <h3>Телефон</h3>
+            <p>+992 900 73 50 25</p>
+        </div>
+
+        <div class="contact-card">
+            <div>✉️</div>
+            <h3>Email</h3>
+            <p>info@homelux.tj</p>
+        </div>
+
+        <div class="contact-card">
+            <div>📍</div>
+            <h3>Суроға</h3>
+            <p>Душанбе, Тоҷикистон</p>
+        </div>
+
+        <div class="contact-card">
+            <div>🕐</div>
+            <h3>Вақт</h3>
+            <p>09:00 – 21:00</p>
+        </div>
+
+    </div>
+
+    <div class="contacts-extra">
+
+        <div class="contact-card">
+            <div>🧭</div>
+            <h3>Навигация</h3>
+            <button data-page="home" style="display:block;width:100%;margin:8px 0;padding:10px;border:0;border-radius:10px;background:var(--bg);color:var(--dark);cursor:pointer;">Главная</button>
+            <button data-page="houses" style="display:block;width:100%;margin:8px 0;padding:10px;border:0;border-radius:10px;background:var(--bg);color:var(--dark);cursor:pointer;">Дома</button>
+            <button data-page="about" style="display:block;width:100%;margin:8px 0;padding:10px;border:0;border-radius:10px;background:var(--bg);color:var(--dark);cursor:pointer;">О нас</button>
+            <button data-page="contacts" style="display:block;width:100%;margin:8px 0;padding:10px;border:0;border-radius:10px;background:var(--bg);color:var(--dark);cursor:pointer;">Контакты</button>
+        </div>
+
+        <div class="contact-card">
+            <div>❓</div>
+            <h3>Помощь</h3>
+            <p>Как купить</p>
+            <p>Услуги</p>
+            <p>Вопросы и ответы</p>
+        </div>
+
+        <div class="contact-card">
+            <div>📋</div>
+            <h3>Связаться с нами</h3>
+            <p>📞 +992 900 73 50 25</p>
+            <p>✉️ info@homelux.tj</p>
+            <p>📍 Душанбе, Тоҷикистон</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="settings" class="page"><div class="settings-modern">
+<div class="settings-hero"><div class="settings-icon">⚙️</div><div><small>HOMELUX SETTINGS</small><h2>Танзимоти HomeLux</h2><p>Сайтро мувофиқи хоҳиши худ танзим кун</p></div></div>
+<div class="settings-section-card"><div class="settings-section-title"><span class="settings-section-icon">🎨</span><div><h3>Намуди сайт</h3><p>Ҳолати равшан ё торик</p></div></div><div class="setting-modern"><span>🌙 Ҳолати торик</span><button id="themeButton" class="setting-switch">Хомӯш</button></div></div>
+<div class="settings-section-card"><div class="settings-section-title"><span class="settings-section-icon">🔔</span><div><h3>Огоҳиномаҳо</h3><p>Огоҳиномаҳои HomeLux</p></div></div><div class="setting-modern"><span>🔔 Огоҳиномаҳо</span><button id="notificationButton" class="setting-switch">Хомӯш</button></div></div>
+<div class="settings-section-card language-card"><div class="settings-section-title"><span class="settings-section-icon">🌐</span><div><h3>Забони сайт</h3><p>Яке аз 10 забонро интихоб кун</p></div></div><div class="languages language-grid">
+<button data-lang="tg"><span>🇹🇯</span><b>Тоҷикӣ</b><small>TJ</small></button><button data-lang="ru"><span>🇷🇺</span><b>Русский</b><small>RU</small></button><button data-lang="en"><span>🇬🇧</span><b>English</b><small>EN</small></button><button data-lang="de"><span>🇩🇪</span><b>Deutsch</b><small>DE</small></button><button data-lang="fr"><span>🇫🇷</span><b>Français</b><small>FR</small></button><button data-lang="ar"><span>🇸🇦</span><b>العربية</b><small>AR</small></button><button data-lang="zh"><span>🇨🇳</span><b>中文</b><small>ZH</small></button><button data-lang="tr"><span>🇹🇷</span><b>Türkçe</b><small>TR</small></button><button data-lang="fa"><span>🇮🇷</span><b>فارسی</b><small>FA</small></button><button data-lang="uz"><span>🇺🇿</span><b>O‘zbek</b><small>UZ</small></button></div><div class="language-current">🌐 <span id="currentLanguageLabel">Тоҷикӣ</span></div></div>
+</div></section>
+
+</main>
+
+<nav class="bottom-menu">
+
+    <button
+        class="bottom-button active"
+        data-page="home"
+    >
+        <span>⌂</span>
+        <small>Асосӣ</small>
+    </button>
+
+    <button
+        class="bottom-button"
+        data-page="search"
+    >
+        <span>🔍</span>
+        <small>Поиск</small>
+    </button>
+
+    <button
+        class="bottom-button"
+        data-page="houses"
+    >
+        <span>🏠</span>
+        <small>Хонаҳо</small>
+    </button>
+
+    <button
+        class="bottom-button"
+        data-page="favorites"
+    >
+        <span>❤️</span>
+        <small>Дӯстдошта</small>
+    </button>
+
+    <button
+        class="bottom-button"
+        data-page="profile"
+    >
+        <span>👤</span>
+        <small>Профил</small>
+    </button>
+
+    <button
+        class="bottom-button"
+        data-page="settings"
+    >
+        <span>⚙️</span>
+        <small>Танзимот</small>
+    </button>
+
+    <button class="bottom-button" data-page="recent">
+        <span>↺</span><small>Охиринҳо</small>
+    </button>
+
+</nav>
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+                <div class="logo-icon">⌂</div>
+                <b>HomeLux</b>
+            </div>
+
+            <p>
+                Хонаҳои зебо барои зиндагии зебо.
+            </p>
+
+        </div>
+
+        <!-- Навигация, Помощь и Контакты удалены из footer -->
+
+    </div>
+
+    <div class="copyright">
+        © 2026 HomeLux. Все права защищены.
+    </div>
+
+</footer>
+
+<!-- ================= REGISTRATION ================= -->
+
+<div id="registerModal" class="modal hidden">
+
+    <div class="modal-overlay" data-close-register></div>
+
+    <div class="register-modal">
+
+        <button
+            class="modal-close"
+            data-close-register
+            type="button"
+        >
+            ×
+        </button>
+
+        <div class="register-icon">
+            👤
+        </div>
+
+        <div class="modal-label">
+            WELCOME TO HOMELUX
+        </div>
+
+        <h2>Регистрация</h2>
+
+        <p>
+            Профили худро созед ва
+            хонаҳои дӯстдоштаатонро нигоҳ доред.
+        </p>
+
+        <form id="registerForm">
+
+            <label>
+                Ном
+
+                <input
+                    id="regName"
+                    type="text"
+                    placeholder="Номи шумо"
+                    required
+                >
+            </label>
+
+            <label>
+                Email
+
+                <input
+                    id="regEmail"
+                    type="email"
+                    placeholder="example@gmail.com"
+                    required
+                >
+            </label>
+
+            <label>
+                Парол
+
+                <input
+                    id="regPassword"
+                    type="password"
+                    placeholder="••••••••"
+                    minlength="4"
+                    required
+                >
+            </label>
+
+            <button
+                type="submit"
+                class="register-submit"
+            >
+                ✨ Сохтани профил
+            </button>
+
+        </form>
+
+        <div class="google-divider">
+
+            <div class="google-divider-line"></div>
+
+            <span>ё</span>
+
+            <div class="google-divider-line"></div>
+
+        </div>
+
+        <button
+            type="button"
+            id="googleLoginButton"
+            class="google-login-button"
+        >
+            <span class="google-logo">G</span>
+
+            <span class="google-login-text">
+                Continue with Google
+            </span>
+        </button>
+
+        <div
+            class="register-note"
+            style="
+                text-align:center;
+                color:var(--muted);
+                font-size:12px;
+                margin-top:15px;
+            "
+        >
+            🔒 Маълумоти шумо дар ҳамин браузер нигоҳ дошта мешавад.
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= HOUSE MODAL ================= -->
+
+<div id="houseModal" class="modal hidden">
+
+    <div
+        class="modal-overlay"
+        data-close-house
+    ></div>
+
+    <div class="house-modal">
+
+        <button
+            class="modal-close"
+            data-close-house
+        >
+            ×
+        </button>
+
+        <div id="houseModalContent"></div>
+
+    </div>
+
+</div>
+
+<!-- ================= COMPARE ================= -->
+
+<div id="compareBar" class="compare-bar">
+
+    <span id="compareText">
+        0 хона интихоб шуд
+    </span>
+
+    <button id="compareOpen">
+        ⚖️ Муқоиса
+    </button>
+
+    <button
+        id="compareClear"
+        style="background:#fee2e2;color:#dc2626;"
+    >
+        Пок кардан
+    </button>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+/* ================= DATA ================= */
+
+const houses = [
+
+    {
+        id:1,
+        name:"Luxury Residence",
+        city:"Душанбе",
+        price:320000,
+        area:420,
+        floors:3,
+        location:"Душанбе, Тоҷикистон",
+        premium:true,
+        image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
+        description:"Хонаи боҳашамат бо тарҳи муосир, ҳуҷраҳои васеъ ва муҳити ором."
+    },
+
+    {
+        id:2,
+        name:"Modern Glass House",
+        city:"Душанбе",
+        price:245000,
+        area:310,
+        floors:2,
+        location:"Сино, Душанбе",
+        premium:true,
+        image:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85",
+        description:"Хонаи замонавӣ бо тирезаҳои калон ва тарҳи минималистӣ."
+    },
+
+    {
+        id:3,
+        name:"Family Garden House",
+        city:"Ҳисор",
+        price:135000,
+        area:250,
+        floors:2,
+        location:"Ҳисор, Тоҷикистон",
+        premium:false,
+        image:"https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=85",
+        description:"Варианти хуб барои оила бо ҳавлии васеъ ва муҳити ором."
+    },
+
+    {
+        id:4,
+        name:"White Minimalist",
+        city:"Душанбе",
+        price:180000,
+        area:280,
+        floors:2,
+        location:"Фирдавсӣ, Душанбе",
+        premium:false,
+        image:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85",
+        description:"Хонаи сафед бо тарҳи минималистӣ ва дохили равшан."
+    },
+
+    {
+        id:5,
+        name:"Pool Villa",
+        city:"Варзоб",
+        price:290000,
+        area:390,
+        floors:2,
+        location:"Варзоб, Тоҷикистон",
+        premium:true,
+        image:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=85",
+        description:"Виллаи зебо бо ҳавзи шиноварӣ ва манзараи табиӣ."
+    },
+
+    {
+        id:6,
+        name:"Stone & Wood",
+        city:"Хуҷанд",
+        price:150000,
+        area:300,
+        floors:2,
+        location:"Хуҷанд, Тоҷикистон",
+        premium:false,
+        image:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1000&q=85",
+        description:"Комбинатсияи санг ва чӯб бо услуби гарм ва замонавӣ."
+    }
+
+];
+
+/* ================= STORAGE ================= */
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("homeLuxFavorites") || "[]"
+    );
+
+let compareList =
+    JSON.parse(
+        localStorage.getItem("homeLuxCompare") || "[]"
+    );
+
+let recentViewed =
+    JSON.parse(
+        localStorage.getItem("homeLuxRecent") || "[]"
+    );
+
+let currentFilter = "all";
+
+function saveData(){
+
+    localStorage.setItem(
+        "homeLuxFavorites",
+        JSON.stringify(favorites)
+    );
+
+    localStorage.setItem(
+        "homeLuxCompare",
+        JSON.stringify(compareList)
+    );
+
+}
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(()=>{
+            toast.classList.remove("show");
+        },2500);
+
+}
+
+/* ================= NAVIGATION ================= */
+
+function showPage(page){
+
+    document.querySelectorAll(".page")
+    .forEach(section=>{
+        section.classList.remove("active");
+    });
+
+    const target =
+        document.getElementById(page);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+    document.querySelectorAll("[data-page]")
+    .forEach(button=>{
+        button.classList.toggle(
+            "active",
+            button.dataset.page === page
+        );
+    });
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+document.querySelectorAll("[data-page]")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const page =
+            button.dataset.page;
+
+        if(page){
+            showPage(page);
+        }
+
+    });
+
+});
+
+/* ================= HOUSE CARD ================= */
+
+function createHouseCard(house){
+
+    const saved =
+        favorites.includes(house.id);
+
+    return `
+
+        <article class="house-card">
+
+            <div
+                class="house-image"
+                style="background-image:url('${house.image}')"
+            >
+
+                <button
+                    class="house-favorite ${saved ? "saved":""}"
+                    onclick="toggleFavorite(${house.id})"
+                    title="Дӯстдошта"
+                >
+                    ${saved ? "❤️":"🤍"}
+                </button>
+
+            </div>
+
+            <div class="house-content">
+
+                <h3>${house.name}</h3>
+
+                <div class="house-location">
+                    📍 ${house.location}
+                </div>
+
+                <div class="house-details">
+
+                    <span class="detail">
+                        📐 ${house.area} м²
+                    </span>
+
+                    <span class="detail">
+                        🏢 ${house.floors} ошёна
+                    </span>
+
+                    <span class="detail">
+                        ${house.premium
+                            ? "💎 Premium"
+                            : "🏠 Standard"}
+                    </span>
+
+                </div>
+
+                <div class="house-bottom">
+
+                    <div class="price">
+                        $${house.price.toLocaleString()}
+                    </div>
+
+                    <div style="display:flex;gap:7px;align-items:center;">
+                        <button
+                            class="add-cart-button ${cart.some(item=>item.id===house.id) ? "added":""}"
+                            onclick="toggleCart(${house.id})"
+                            title="Корзина"
+                        >
+                            ${cart.some(item=>item.id===house.id) ? "✓ Дар корзина" : "🛒"}
+                        </button>
+                        <button
+                            class="details-button"
+                            onclick="openHouse(${house.id})"
+                        >
+                            Дидан →
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+/* ================= RENDER ================= */
+
+function renderHouses(){
+
+    const homeHouses =
+        document.getElementById("homeHouses");
+
+    const housesList =
+        document.getElementById("housesList");
+
+    if(homeHouses){
+
+        homeHouses.innerHTML =
+            houses
+                .slice(0,3)
+                .map(createHouseCard)
+                .join("");
+
+    }
+
+    if(housesList){
+
+        let result = houses;
+
+        if(currentFilter === "cheap"){
+            result =
+                houses.filter(
+                    h=>h.price <= 150000
+                );
+        }
+
+        if(currentFilter === "medium"){
+            result =
+                houses.filter(
+                    h=>h.price > 150000 &&
+                    h.price <= 250000
+                );
+        }
+
+        if(currentFilter === "premium"){
+            result =
+                houses.filter(
+                    h=>h.premium
+                );
+        }
+
+        housesList.innerHTML =
+            result.length
+            ? result.map(createHouseCard).join("")
+            : emptyState("Ягон хона ёфт нашуд.");
+
+    }
+
+    updateStatistics();
+
+}
+
+/* ================= RECENTLY VIEWED ================= */
+
+function saveRecent(){
+    localStorage.setItem(
+        "homeLuxRecent",
+        JSON.stringify(recentViewed)
+    );
+}
+
+function addRecentViewed(id){
+    recentViewed = recentViewed.filter(item => item !== id);
+    recentViewed.unshift(id);
+    recentViewed = recentViewed.slice(0,6);
+    saveRecent();
+    renderRecent();
+}
+
+function renderRecent(){
+    const list = document.getElementById("recentList");
+    const count = document.getElementById("recentCount");
+    if(!list) return;
+
+    const result = recentViewed
+        .map(id => houses.find(h => h.id === id))
+        .filter(Boolean);
+
+    if(count){
+        count.textContent = `${result.length} хона`;
+    }
+
+    list.innerHTML = result.length
+        ? result.map(house => `
+            <article class="house-card">
+                <div class="house-image" style="background-image:url('${house.image}')">
+                    <span class="recent-badge"><i class="clock-icon"></i> Ба наздикӣ</span>
+                    <button class="house-favorite ${favorites.includes(house.id) ? "saved":""}" onclick="toggleFavorite(${house.id})">
+                        ${favorites.includes(house.id) ? "❤️":"🤍"}
+                    </button>
+                </div>
+                <div class="house-content">
+                    <h3>${house.name}</h3>
+                    <div class="house-location">📍 ${house.location}</div>
+                    <div class="house-details">
+                        <span class="detail">📐 ${house.area} м²</span>
+                        <span class="detail">🏢 ${house.floors} ошёна</span>
+                    </div>
+                    <div class="house-bottom">
+                        <div class="price">$${house.price.toLocaleString()}</div>
+                        <button class="details-button" onclick="openHouse(${house.id})">Дидан →</button>
+                    </div>
+                </div>
+            </article>
+        `).join("")
+        : `<div class="recent-empty"><i class="clock-icon"></i><br>Ҳоло ягон хона дида нашудааст.<br><br>Аз қисми «Хонаҳо» як хонаро кушоед.</div>`;
+}
+
+function clearRecent(){
+    recentViewed = [];
+    saveRecent();
+    renderRecent();
+    showToast("🗑️ Таърихи тамошо пок шуд");
+}
+
+const clearRecentButton = document.getElementById("clearRecent");
+if(clearRecentButton){
+    clearRecentButton.addEventListener("click", clearRecent);
+}
+
+/* ================= FAVORITES ================= */
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item=>item !== id
+            );
+
+        showToast(
+            "🤍 Аз дӯстдоштаҳо хориҷ шуд"
+        );
+
+    }else{
+
+        favorites.push(id);
+
+        showToast(
+            "❤️ Ба дӯстдоштаҳо илова шуд"
+        );
+
+    }
+
+    saveData();
+
+    renderHouses();
+
+    renderFavorites();
+
+}
+
+function renderFavorites(){
+
+    const container =
+        document.getElementById("favoriteList");
+
+    if(!container) return;
+
+    const result =
+        houses.filter(
+            h=>favorites.includes(h.id)
+        );
+
+    container.innerHTML =
+        result.length
+        ? result.map(createHouseCard).join("")
+        : emptyState(
+            "❤️ Ҳоло ягон хонаи дӯстдошта надоред."
+          );
+
+}
+
+/* ================= COMPARE ================= */
+
+function toggleCompare(id){
+
+    if(compareList.includes(id)){
+
+        compareList =
+            compareList.filter(
+                item=>item !== id
+            );
+
+        showToast(
+            "Хона аз муқоиса хориҷ шуд"
+        );
+
+    }else{
+
+        if(compareList.length >= 3){
+
+            showToast(
+                "⚠️ Максимум 3 хона муқоиса мешавад."
+            );
+
+            return;
+        }
+
+        compareList.push(id);
+
+        showToast(
+            "⚖️ Хона ба муқоиса илова шуд"
+        );
+
+    }
+
+    saveData();
+
+    updateCompareBar();
+
+}
+
+function updateCompareBar(){
+
+    const bar =
+        document.getElementById("compareBar");
+
+    const text =
+        document.getElementById("compareText");
+
+    if(compareList.length > 0){
+
+        bar.classList.add("show");
+
+        text.textContent =
+            `${compareList.length} хона интихоб шуд`;
+
+    }else{
+
+        bar.classList.remove("show");
+
+    }
+
+    updateStatistics();
+
+}
+
+document.getElementById(
+    "compareOpen"
+).addEventListener(
+    "click",
+    openCompare
+);
+
+function openCompare(){
+
+    if(compareList.length < 2){
+
+        showToast(
+            "⚠️ Барои муқоиса камаш 2 хона интихоб кунед."
+        );
+
+        return;
+    }
+
+    const selected =
+        houses.filter(
+            h=>compareList.includes(h.id)
+        );
+
+    const content = `
+
+        <h2>⚖️ Муқоисаи хонаҳо</h2>
+
+        <div style="
+            overflow-x:auto;
+            margin-top:20px;
+        ">
+
+            <table style="
+                width:100%;
+                border-collapse:collapse;
+                color:var(--text);
+            ">
+
+                <tr>
+
+                    <th style="padding:12px;text-align:left;">
+                        Маълумот
+                    </th>
+
+                    ${selected.map(h=>`
+
+                        <th style="padding:12px;">
+                            ${h.name}
+                        </th>
+
+                    `).join("")}
+
+                </tr>
+
+                <tr>
+
+                    <td style="
+                        padding:12px;
+                        border-top:1px solid var(--border);
+                    ">
+                        💰 Нарх
+                    </td>
+
+                    ${selected.map(h=>`
+
+                        <td style="
+                            padding:12px;
+                            border-top:1px solid var(--border);
+                        ">
+                            $${h.price.toLocaleString()}
+                        </td>
+
+                    `).join("")}
+
+                </tr>
+
+                <tr>
+
+                    <td style="
+                        padding:12px;
+                        border-top:1px solid var(--border);
+                    ">
+                        📐 Масоҳат
+                    </td>
+
+                    ${selected.map(h=>`
+
+                        <td style="
+                            padding:12px;
+                            border-top:1px solid var(--border);
+                        ">
+                            ${h.area} м²
+                        </td>
+
+                    `).join("")}
+
+                </tr>
+
+                <tr>
+
+                    <td style="
+                        padding:12px;
+                        border-top:1px solid var(--border);
+                    ">
+                        🏢 Ошёна
+                    </td>
+
+                    ${selected.map(h=>`
+
+                        <td style="
+                            padding:12px;
+                            border-top:1px solid var(--border);
+                        ">
+                            ${h.floors}
+                        </td>
+
+                    `).join("")}
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    `;
+
+    openCustomModal(content);
+
+}
+
+document.getElementById(
+    "compareClear"
+).addEventListener(
+    "click",
+    ()=>{
+
+        compareList = [];
+
+        saveData();
+
+        updateCompareBar();
+
+        showToast(
+            "Муқоиса пок карда шуд"
+        );
+
+    }
+);
+
+/* ================= HOUSE MODAL ================= */
+
+function openHouse(id){
+
+    const house =
+        houses.find(
+            h=>h.id === id
+        );
+
+    if(!house) return;
+
+    addRecentViewed(id);
+
+    const modal =
+        document.getElementById("houseModal");
+
+    const content =
+        document.getElementById(
+            "houseModalContent"
+        );
+
+    content.innerHTML = `
+
+        <img
+            class="modal-house-image"
+            src="${house.image}"
+            alt="${house.name}"
+        >
+
+        <h2>${house.name}</h2>
+
+        <div>
+            📍 ${house.location}
+        </div>
+
+        <div class="modal-price">
+            $${house.price.toLocaleString()}
+        </div>
+
+        <div class="house-details">
+
+            <span class="detail">
+                📐 ${house.area} м²
+            </span>
+
+            <span class="detail">
+                🏢 ${house.floors} ошёна
+            </span>
+
+            <span class="detail">
+                ${house.premium
+                    ? "💎 Premium"
+                    : "🏠 Standard"}
+            </span>
+
+        </div>
+
+        <p class="modal-description">
+            ${house.description}
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="compare-button"
+                onclick="toggleCompare(${house.id})"
+            >
+                ⚖️ Ба муқоиса
+            </button>
+
+            <button
+                class="share-button"
+                onclick="shareHouse(${house.id})"
+            >
+                📤 Share
+            </button>
+
+            <button
+                class="qr-button"
+                onclick="showQR(${house.id})"
+            >
+                📱 QR Code
+            </button>
+
+        </div>
+
+        <div id="qrcode"></div>
+
+    `;
+
+    modal.classList.remove("hidden");
+
+}
+
+document.querySelectorAll(
+    "[data-close-house]"
+).forEach(element=>{
+
+    element.addEventListener(
+        "click",
+        ()=>{
+            document
+                .getElementById("houseModal")
+                .classList.add("hidden");
+        }
+    );
+
+});
+
+/* ================= SHARE ================= */
+
+async function shareHouse(id){
+
+    const house =
+        houses.find(
+            h=>h.id===id
+        );
+
+    if(!house) return;
+
+    const shareData = {
+
+        title:
+            `HomeLux — ${house.name}`,
+
+        text:
+            `${house.name} — $${house.price.toLocaleString()}, ${house.area} м², ${house.city}`,
+
+        url:
+            window.location.href
+
+    };
+
+    try{
+
+        if(navigator.share){
+
+            await navigator.share(
+                shareData
+            );
+
+        }else{
+
+            await navigator.clipboard.writeText(
+                `${house.name} — $${house.price.toLocaleString()} — ${house.area} м²`
+            );
+
+            showToast(
+                "📋 Маълумот нусха гирифта шуд"
+            );
+
+        }
+
+    }catch(error){
+
+        if(error.name !== "AbortError"){
+
+            showToast(
+                "Share иҷро нашуд"
+            );
+
+        }
+
+    }
+
+}
+
+/* ================= QR ================= */
+
+function showQR(id){
+
+    const house =
+        houses.find(
+            h=>h.id===id
+        );
+
+    if(!house) return;
+
+    const qr =
+        document.getElementById("qrcode");
+
+    qr.innerHTML = "";
+
+    if(typeof QRCode !== "undefined"){
+
+        new QRCode(
+            qr,
+            {
+                text:
+                    `${house.name} | ${house.city} | $${house.price}`,
+                width:150,
+                height:150
+            }
+        );
+
+    }else{
+
+        qr.innerHTML =
+            "<p>QR Code ҳоло дастрас нест.</p>";
+
+    }
+
+}
+
+/* ================= CUSTOM MODAL ================= */
+
+function openCustomModal(content){
+
+    const modal =
+        document.getElementById("houseModal");
+
+    const container =
+        document.getElementById("houseModalContent");
+
+    container.innerHTML =
+        content;
+
+    modal.classList.remove("hidden");
+
+}
+
+/* ================= DARK MODE ================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+let darkMode =
+    localStorage.getItem(
+        "homeLuxDark"
+    ) === "true";
+
+function applyTheme(){
+
+    document.body.classList.toggle(
+        "dark",
+        darkMode
+    );
+
+    themeButton.textContent =
+        darkMode
+        ? "Фаъол"
+        : "Хомӯш";
+
+}
+
+themeButton.addEventListener(
+    "click",
+    ()=>{
+
+        darkMode = !darkMode;
+
+        localStorage.setItem(
+            "homeLuxDark",
+            darkMode
+        );
+
+        applyTheme();
+
+        showToast(
+            darkMode
+            ? "🌙 Ҳолати торик фаъол шуд"
+            : "☀️ Ҳолати равшан фаъол шуд"
+        );
+
+    }
+);
+
+/* ================= NOTIFICATIONS ================= */
+
+const notificationButton =
+    document.getElementById(
+        "notificationButton"
+    );
+
+let notifications =
+    localStorage.getItem(
+        "homeLuxNotifications"
+    ) === "true";
+
+function applyNotifications(){
+
+    notificationButton.textContent =
+        notifications
+        ? "Фаъол"
+        : "Хомӯш";
+
+}
+
+notificationButton.addEventListener(
+    "click",
+    ()=>{
+
+        notifications = !notifications;
+
+        localStorage.setItem(
+            "homeLuxNotifications",
+            notifications
+        );
+
+        applyNotifications();
+
+        showToast(
+            notifications
+            ? "🔔 Огоҳиномаҳо фаъол шуданд"
+            : "🔕 Огоҳиномаҳо хомӯш шуданд"
+        );
+
+    }
+);
+
+/* ================= STATISTICS ================= */
+
+function updateStatistics(){
+
+    const heroHouseCount =
+        document.getElementById(
+            "heroHouseCount"
+        );
+
+    const favoriteCount =
+        document.getElementById(
+            "favoriteCount"
+        );
+
+    const compareCount =
+        document.getElementById(
+            "compareCount"
+        );
+
+    if(heroHouseCount)
+        heroHouseCount.textContent =
+            houses.length;
+
+    if(favoriteCount)
+        favoriteCount.textContent =
+            favorites.length;
+
+    if(compareCount)
+        compareCount.textContent =
+            compareList.length;
+
+}
+
+/* ================= SEARCH ================= */
+
+function performSearch(query){
+
+    const text =
+        query.trim().toLowerCase();
+
+    showPage("search");
+
+    const resultContainer =
+        document.getElementById(
+            "searchResults"
+        );
+
+    if(!text){
+
+        resultContainer.innerHTML =
+            emptyState(
+                "🔍 Барои ҷустуҷӯ чизе нависед."
+            );
+
+        return;
+    }
+
+    const result =
+        houses.filter(h=>
+
+            h.name
+                .toLowerCase()
+                .includes(text)
+
+            ||
+
+            h.city
+                .toLowerCase()
+                .includes(text)
+
+            ||
+
+            h.location
+                .toLowerCase()
+                .includes(text)
+
+            ||
+
+            String(h.price)
+                .includes(text)
+
+            ||
+
+            String(h.area)
+                .includes(text)
+
+        );
+
+    resultContainer.innerHTML =
+        result.length
+        ? result.map(createHouseCard).join("")
+        : emptyState(
+            "😕 Ягон хона ёфт нашуд."
+          );
+
+}
+
+document.getElementById(
+    "topSearchButton"
+).addEventListener(
+    "click",
+    ()=>{
+        performSearch(
+            document.getElementById(
+                "topSearch"
+            ).value
+        );
+    }
+);
+
+document.getElementById(
+    "topSearch"
+).addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Enter"){
+
+            performSearch(
+                event.target.value
+            );
+
+        }
+
+    }
+);
+
+document.getElementById(
+    "bigSearchButton"
+).addEventListener(
+    "click",
+    ()=>{
+
+        performSearch(
+            document.getElementById(
+                "bigSearch"
+            ).value
+        );
+
+    }
+);
+
+document.getElementById(
+    "bigSearch"
+).addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Enter"){
+
+            performSearch(
+                event.target.value
+            );
+
+        }
+
+    }
+);
+
+/* ================= FILTERS ================= */
+
+document.querySelectorAll(
+    ".filter"
+).forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            document.querySelectorAll(
+                ".filter"
+            ).forEach(
+                btn=>btn.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            currentFilter =
+                button.dataset.filter;
+
+            renderHouses();
+
+        }
+    );
+
+});
+
+/* ================= EMPTY ================= */
+
+function emptyState(message){
+
+    return `
+
+        <div style="
+            grid-column:1/-1;
+            padding:50px;
+            text-align:center;
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:22px;
+            color:var(--muted);
+        ">
+
+            <div style="
+                font-size:45px;
+                margin-bottom:12px;
+            ">
+                🏠
+            </div>
+
+            <strong style="color:var(--dark);">
+                ${message}
+            </strong>
+
+        </div>
+
+    `;
+
+}
+
+/* ================= REGISTRATION ================= */
+
+const registerModal =
+    document.getElementById(
+        "registerModal"
+    );
+
+document.getElementById(
+    "registerButton"
+).addEventListener(
+    "click",
+    ()=>{
+        registerModal.classList.remove("hidden");
+    }
+);
+
+document.getElementById(
+    "profileRegister"
+).addEventListener(
+    "click",
+    ()=>{
+        registerModal.classList.remove("hidden");
+    }
+);
+
+document.querySelectorAll(
+    "[data-close-register]"
+).forEach(element=>{
+
+    element.addEventListener(
+        "click",
+        ()=>{
+            registerModal.classList.add("hidden");
+        }
+    );
+
+});
+
+document.getElementById(
+    "registerForm"
+).addEventListener(
+    "submit",
+    event=>{
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById(
+                "regName"
+            ).value.trim();
+
+        const email =
+            document.getElementById(
+                "regEmail"
+            ).value.trim();
+
+        if(!name || !email){
+
+            showToast(
+                "⚠️ Ҳамаи майдонҳоро пур кунед."
+            );
+
+            return;
+
+        }
+
+        const user = {
+            name,
+            email
+        };
+
+        localStorage.setItem(
+            "homeLuxUser",
+            JSON.stringify(user)
+        );
+
+        updateProfile();
+
+        registerModal.classList.add("hidden");
+
+        event.target.reset();
+
+        showToast(
+            "🎉 Профил бомуваффақият сохта шуд!"
+        );
+
+        showPage("profile");
+
+    }
+);
+
+/* ================= GOOGLE BUTTON ================= */
+
+const googleLoginButton =
+    document.getElementById(
+        "googleLoginButton"
+    );
+
+googleLoginButton.addEventListener(
+    "click",
+    ()=>{
+
+        window.open(
+            "https://accounts.google.com/",
+            "_blank"
+        );
+
+    }
+);
+
+/* ================= PROFILE ================= */
+
+function updateProfile(){
+
+    const user =
+        JSON.parse(
+            localStorage.getItem(
+                "homeLuxUser"
+            ) || "null"
+        );
+
+    const name =
+        document.getElementById(
+            "profileName"
+        );
+
+    const email =
+        document.getElementById(
+            "profileEmail"
+        );
+
+    const avatar =
+        document.getElementById(
+            "profileAvatar"
+        );
+
+    if(user){
+
+        name.textContent =
+            `Салом, ${user.name}! 👋`;
+
+        email.textContent =
+            user.email;
+
+        avatar.textContent =
+            user.name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+}
+
+/* ================= LANGUAGE ================= */
+
+const LANG_TEXT = {
+    tg: {
+        "Главная":"Асосӣ", "Дома":"Хонаҳо", "О нас":"Дар бораи мо", "Контакты":"Тамос",
+        "Дӯстдошта":"Дӯстдошта", "Поиск":"Ҷустуҷӯ", "Профил":"Профил", "Танзимот":"Танзимот",
+        "Охиринҳо":"Охиринҳо", "Хонаҳо":"Хонаҳо", "Лучшие дома для вас":"Беҳтарин хонаҳо барои шумо",
+        "↺ Кушодаҳои охир":"↺ Кушодаҳои охир", "👤 Регистрация":"👤 Бақайдгирӣ",
+        "Хонаи орзуи худро":"Хонаи орзуи худро", "пайдо кун":"пайдо кун", "🏠 Дидани хонаҳо":"🏠 Дидани хонаҳо",
+        "Дар бораи мо":"Дар бораи мо", "Хона":"Хона", "Муқоиса":"Муқоиса",
+        "SMART MATCH":"SMART MATCH", "Хонаи худро оқилона ёбед":"Хонаи худро оқилона ёбед",
+        "Шаҳр":"Шаҳр", "Ҳамаи шаҳрҳо":"Ҳамаи шаҳрҳо", "Буҷет":"Буҷет", "Масоҳат":"Масоҳат", "Услуб":"Услуб",
+        "✨ Smart Match":"✨ Smart Match", "🎁 Хонаи тасодуфӣ":"🎁 Хонаи тасодуфӣ",
+        "Бигзор HomeLux имрӯз барои ту як хона интихоб кунад.":"Бигзор HomeLux имрӯз барои ту як хона интихоб кунад.",
+        "🎁 Интихоб кун":"🎁 Интихоб кун", "🏠 Хонаҳои машҳур":"🏠 Хонаҳои машҳур", "Ҳамаашро бин →":"Ҳамаашро бин →",
+        "Чаро HomeLux?":"Чаро HomeLux?", "Ҳама чиз барои интихоби осон ва боваринок.":"Ҳама чиз барои интихоби осон ва боваринок.",
+        "Боваринок":"Боваринок", "Интихоби зебо":"Интихоби зебо", "Осон ва зуд":"Осон ва зуд",
+        "🔍 Ҷустуҷӯи хона":"🔍 Ҷустуҷӯи хона", "Номи хона ё шаҳрро ворид кунед.":"Номи хона ё шаҳрро ворид кунед.", "Ҷустуҷӯ":"Ҷустуҷӯ",
+        "Хонаҳои зебои шумо":"Хонаҳои зебои шумо", "Аз байни беҳтарин хонаҳои замонавӣ варианти орзуятонро интихоб кунед.":"Аз байни беҳтарин хонаҳои замонавӣ варианти орзуятонро интихоб кунед.",
+        "Ҳама":"Ҳама", "❤️ Дӯстдоштаҳо":"❤️ Дӯстдоштаҳо", "Хонаҳои интихобкардаи шумо.":"Хонаҳои интихобкардаи шумо.",
+        "Таърихи дидан":"Таърихи дидан", "Интихобҳои охирини шумо":"Интихобҳои охирини шумо", "⌫":"⌫", "Пок кардани таърих":"Пок кардани таърих",
+        "Хонаҳоро кушоед — онҳо ба таърихи дидани шумо автоматӣ илова мешаванд.":"Хонаҳоро кушоед — онҳо ба таърихи дидани шумо автоматӣ илова мешаванд.",
+        "Хуш омадед ба HomeLux":"Хуш омадед ба HomeLux", "Барои сохтани профил регистрация кунед.":"Барои сохтани профил бақайдгирӣ кунед.",
+        "📞 Контакты":"📞 Тамос", "Барои саволҳо ба мо муроҷиат кунед.":"Барои саволҳо ба мо муроҷиат кунед.",
+        "Телефон":"Телефон", "Суроға":"Суроға", "Вақт":"Вақт", "Навигация":"Навигатсия", "Помощь":"Кӯмак",
+        "Как купить":"Чӣ тавр харидан", "Услуги":"Хизматрасониҳо", "Вопросы и ответы":"Саволҳо ва ҷавобҳо", "Связаться с нами":"Бо мо тамос гиред",
+        "⚙️ Танзимот":"⚙️ Танзимот", "🌙 Ҳолати торик":"🌙 Ҳолати торик", "🔔 Огоҳиномаҳо":"🔔 Огоҳиномаҳо", "🌐 Забон":"🌐 Забон",
+        "Тоҷикӣ":"Тоҷикӣ", "Русский":"Русский", "English":"English", "Регистрация":"Бақайдгирӣ", "Ном":"Ном", "Парол":"Парол",
+        "✨ Сохтани профил":"✨ Сохтани профил", "ё":"ё", "Continue with Google":"Continue with Google",
+        "⚖️ Муқоиса":"⚖️ Муқоиса", "Пок кардан":"Пок кардан", "🛒 Корзина":"🛒 Сабад", "Ҳамагӣ:":"Ҳамагӣ:", "🗑️ Тоза кардани корзина":"🗑️ Тоза кардани сабад"
+    },
+    ru: {
+        "Асосӣ":"Главная", "Хонаҳо":"Дома", "Дар бораи мо":"О нас", "Тамос":"Контакты", "Дӯстдошта":"Избранное", "Ҷустуҷӯ":"Поиск", "Профил":"Профиль", "Танзимот":"Настройки", "Охиринҳо":"Недавние",
+        "Лучшие дома для вас":"Лучшие дома для вас", "↺ Кушодаҳои охир":"↺ Недавно просмотренные", "👤 Регистрация":"👤 Регистрация", "🏠 Дидани хонаҳо":"🏠 Смотреть дома",
+        "Хонаи худро оқилона ёбед":"Найдите дом умнее", "Шаҳр":"Город", "Ҳамаи шаҳрҳо":"Все города", "Буҷет":"Бюджет", "Масоҳат":"Площадь", "Услуб":"Стиль", "✨ Smart Match":"✨ Smart Match",
+        "🎁 Хонаи тасодуфӣ":"🎁 Случайный дом", "Бигзор HomeLux имрӯз барои ту як хона интихоб кунад.":"Пусть HomeLux сегодня выберет дом для вас.", "🎁 Интихоб кун":"🎁 Выбрать",
+        "🏠 Хонаҳои машҳур":"🏠 Популярные дома", "Ҳамаашро бин →":"Смотреть все →", "Чаро HomeLux?":"Почему HomeLux?", "Боваринок":"Надёжно", "Интихоби зебо":"Красивый выбор", "Осон ва зуд":"Быстро и удобно",
+        "🔍 Ҷустуҷӯи хона":"🔍 Поиск дома", "Номи хона ё шаҳрро ворид кунед.":"Введите название дома или города.", "Ҷустуҷӯ":"Поиск", "Хонаҳои зебои шумо":"Красивые дома для вас",
+        "Таърихи дидан":"История просмотров", "Интихобҳои охирини шумо":"Ваши последние просмотры", "Пок кардани таърих":"Очистить историю", "Хуш омадед ба HomeLux":"Добро пожаловать в HomeLux",
+        "Барои сохтани профил регистрация кунед.":"Зарегистрируйтесь, чтобы создать профиль.", "📞 Контакты":"📞 Контакты", "Телефон":"Телефон", "Суроға":"Адрес", "Вақт":"Время", "Навигация":"Навигация", "Помощь":"Помощь",
+        "Как купить":"Как купить", "Услуги":"Услуги", "Вопросы и ответы":"Вопросы и ответы", "Связаться с нами":"Связаться с нами", "⚙️ Танзимот":"⚙️ Настройки", "🌙 Ҳолати торик":"🌙 Тёмная тема", "🔔 Огоҳиномаҳо":"🔔 Уведомления", "🌐 Забон":"🌐 Язык",
+        "Регистрация":"Регистрация", "Ном":"Имя", "Парол":"Пароль", "✨ Сохтани профил":"✨ Создать профиль", "⚖️ Муқоиса":"⚖️ Сравнить", "Пок кардан":"Очистить", "🛒 Корзина":"🛒 Корзина", "🗑️ Тоза кардани корзина":"🗑️ Очистить корзину"
+    },
+    en: {
+        "Асосӣ":"Home", "Главная":"Home", "Хонаҳо":"Houses", "Дома":"Houses", "Дар бораи мо":"About us", "О нас":"About us", "Тамос":"Contacts", "Контакты":"Contacts", "Дӯстдошта":"Favorites", "Ҷустуҷӯ":"Search", "Поиск":"Search", "Профил":"Profile", "Танзимот":"Settings", "Охиринҳо":"Recent",
+        "Лучшие дома для вас":"Best homes for you", "↺ Кушодаҳои охир":"↺ Recently viewed", "👤 Регистрация":"👤 Sign up", "🏠 Дидани хонаҳо":"🏠 View houses", "Хонаи худро оқилона ёбед":"Find your home smarter",
+        "Шаҳр":"City", "Ҳамаи шаҳрҳо":"All cities", "Буҷет":"Budget", "Масоҳат":"Area", "Услуб":"Style", "✨ Smart Match":"✨ Smart Match", "🎁 Хонаи тасодуфӣ":"🎁 Random home",
+        "Бигзор HomeLux имрӯз барои ту як хона интихоб кунад.":"Let HomeLux choose a home for you today.", "🎁 Интихоб кун":"🎁 Choose", "🏠 Хонаҳои машҳур":"🏠 Popular homes", "Ҳамаашро бин →":"See all →",
+        "Чаро HomeLux?":"Why HomeLux?", "Боваринок":"Trusted", "Интихоби зебо":"Beautiful selection", "Осон ва зуд":"Easy & fast", "🔍 Ҷустуҷӯи хона":"🔍 House search", "Номи хона ё шаҳрро ворид кунед.":"Enter a house name or city.", "Хонаҳои зебои шумо":"Beautiful homes for you",
+        "Таърихи дидан":"Viewing history", "Интихобҳои охирини шумо":"Your recent choices", "Пок кардани таърих":"Clear history", "Хуш омадед ба HomeLux":"Welcome to HomeLux", "Барои сохтани профил регистрация кунед.":"Sign up to create your profile.",
+        "📞 Контакты":"📞 Contacts", "Телефон":"Phone", "Суроға":"Address", "Вақт":"Hours", "Навигация":"Navigation", "Помощь":"Help", "Как купить":"How to buy", "Услуги":"Services", "Вопросы и ответы":"FAQ", "Связаться с нами":"Contact us",
+        "⚙️ Танзимот":"⚙️ Settings", "🌙 Ҳолати торик":"🌙 Dark mode", "🔔 Огоҳиномаҳо":"🔔 Notifications", "🌐 Забон":"🌐 Language", "Регистрация":"Sign up", "Ном":"Name", "Парол":"Password", "✨ Сохтани профил":"✨ Create profile", "⚖️ Муқоиса":"⚖️ Compare", "Пок кардан":"Clear", "🛒 Корзина":"🛒 Cart", "🗑️ Тоза кардани корзина":"🗑️ Clear cart"
+    }    ,de:{"Асосӣ":"Startseite","Главная":"Startseite","Хонаҳо":"Häuser","Дома":"Häuser","Дар бораи мо":"Über uns","О нас":"Über uns","Тамос":"Kontakt","Контакты":"Kontakt","Дӯстдошта":"Favoriten","Ҷустуҷӯ":"Suche","Поиск":"Suche","Профил":"Profil","Танзимот":"Einstellungen","Охиринҳо":"Zuletzt","Шаҳр":"Stadt","Ҳамаи шаҳрҳо":"Alle Städte","Буҷет":"Budget","Масоҳат":"Fläche","Услуб":"Stil","✨ Smart Match":"✨ Smart Match","🎁 Хонаи тасодуфӣ":"🎁 Zufälliges Haus","🎁 Интихоб кун":"🎁 Auswählen","🏠 Хонаҳои машҳур":"🏠 Beliebte Häuser","Чаро HomeLux?":"Warum HomeLux?","Боваринок":"Vertrauenswürdig","Интихоби зебо":"Schöne Auswahl","Осон ва зуд":"Einfach und schnell","Таърихи дидан":"Ansichtsverlauf","Пок кардани таърих":"Verlauf löschen","Телефон":"Telefon","Суроға":"Adresse","Вақт":"Öffnungszeiten","Помощь":"Hilfe","Услуги":"Dienstleistungen","⚙️ Танзимот":"⚙️ Einstellungen","🌙 Ҳолати торик":"🌙 Dunkelmodus","🔔 Огоҳиномаҳо":"🔔 Benachrichtigungen","🌐 Забон":"🌐 Sprache","Регистрация":"Registrieren","Ном":"Name","Парол":"Passwort","✨ Сохтани профил":"✨ Profil erstellen","⚖️ Муқоиса":"✨ Vergleichen","Пок кардан":"Löschen","🛒 Корзина":"🛒 Warenkorb","Танзимоти HomeLux":"HomeLux Einstellungen","Сайтро мувофиқи хоҳиши худ танзим кун":"Passe die Website an","Намуди сайт":"Website-Design","Ҳолати равшан ё торик":"Hell- oder Dunkelmodus","Хомӯш":"Aus","Забони сайт":"Website-Sprache","Яке аз 10 забонро интихоб кун":"Wähle eine von 10 Sprachen","Тоҷикӣ":"Tadschikisch","Русский":"Russisch","English":"Englisch","Deutsch":"Deutsch","Français":"Französisch","العربية":"Arabisch","中文":"Chinesisch","Türkçe":"Türkisch","فارسی":"Persisch","O‘zbek":"Usbekisch"},
+    fr:{"Асосӣ":"Accueil","Главная":"Accueil","Хонаҳо":"Maisons","Дома":"Maisons","Дар бораи мо":"À propos","О нас":"À propos","Тамос":"Contact","Контакты":"Contact","Дӯстдошта":"Favoris","Ҷустуҷӯ":"Recherche","Поиск":"Recherche","Профил":"Profil","Танзимот":"Paramètres","Охиринҳо":"Récent","Шаҳр":"Ville","Ҳамаи шаҳрҳо":"Toutes les villes","Буҷет":"Budget","Масоҳат":"Surface","Услуб":"Style","✨ Smart Match":"✨ Smart Match","🎁 Хонаи тасодуфӣ":"🎁 Maison aléatoire","🎁 Интихоб кун":"🎁 Choisir","🏠 Хонаҳои машҳур":"🏠 Maisons populaires","Чаро HomeLux?":"Pourquoi HomeLux ?","Боваринок":"Fiable","Интихоби зебо":"Belle sélection","Осон ва зуд":"Simple et rapide","Таърихи дидан":"Historique","Пок кардани таърих":"Effacer l'historique","Телефон":"Téléphone","Суроға":"Adresse","Вақт":"Horaires","Помощь":"Aide","Услуги":"Services","⚙️ Танзимот":"⚙️ Paramètres","🌙 Ҳолати торик":"🌙 Mode sombre","🔔 Огоҳиномаҳо":"🔔 Notifications","🌐 Забон":"🌐 Langue","Регистрация":"Inscription","Ном":"Nom","Парол":"Mot de passe","✨ Сохтани профил":"✨ Créer un profil","⚖️ Муқоиса":"Comparer","Пок кардан":"Effacer","🛒 Корзина":"Panier","Танзимоти HomeLux":"Paramètres HomeLux","Сайтро мувофиқи хоҳиши худ танзим кун":"Personnalisez le site","Намуди сайт":"Apparence","Ҳолати равшан ё торик":"Mode clair ou sombre","Хомӯш":"Désactivé","Забони сайт":"Langue du site","Яке аз 10 забонро интихоб кун":"Choisissez une langue parmi 10","Тоҷикӣ":"Tadjik","Русский":"Russe","English":"Anglais","Deutsch":"Allemand","Français":"Français","العربية":"Arabe","中文":"Chinois","Türkçe":"Turc","فارسی":"Persan","O‘zbek":"Ouzbek"},
+    ar:{"Асосӣ":"الرئيسية","Главная":"الرئيسية","Хонаҳо":"المنازل","Дома":"المنازل","Дар бораи мо":"من نحن","О нас":"من نحن","Тамос":"اتصل بنا","Контакты":"اتصل بنا","Дӯстдошта":"المفضلة","Ҷустуҷӯ":"بحث","Поиск":"بحث","Профил":"الملف الشخصي","Танзимот":"الإعدادات","Охиринҳо":"الأخيرة","Шаҳр":"المدينة","Ҳамаи шаҳрҳо":"كل المدن","Буҷет":"الميزانية","Масоҳат":"المساحة","Услуб":"النمط","✨ Smart Match":"✨ مطابقة ذكية","🎁 Хонаи тасодуфӣ":"🎁 منزل عشوائي","🎁 Интихоб кун":"🎁 اختر","🏠 Хонаҳои машҳур":"🏠 المنازل الشهيرة","Чаро HomeLux?":"لماذا HomeLux؟","Боваринок":"موثوق","Интихоби зебо":"اختيار جميل","Осон ва зуд":"سهل وسريع","Таърихи дидан":"سجل المشاهدة","Пок кардани таърих":"مسح السجل","Телефон":"الهاتف","Суроға":"العنوان","Вақт":"ساعات العمل","Помощь":"المساعدة","Услуги":"الخدمات","⚙️ Танзимот":"⚙️ الإعدادات","🌙 Ҳолати торик":"🌙 الوضع الداكن","🔔 Огоҳиномаҳо":"🔔 الإشعارات","🌐 Забон":"🌐 اللغة","Регистрация":"تسجيل","Ном":"الاسم","Парол":"كلمة المرور","✨ Сохтани профил":"✨ إنشاء ملف","⚖️ Муқоиса":"مقارنة","Пок кардан":"مسح","🛒 Корзина":"السلة","Танзимоти HomeLux":"إعدادات HomeLux","Сайтро мувофиқи хоҳиши худ танзим кун":"خصص الموقع","Намуди сайт":"مظهر الموقع","Ҳолати равшан ё торик":"الوضع الفاتح أو الداكن","Хомӯш":"إيقاف","Забони сайт":"لغة الموقع","Яке аз 10 забонро интихоб кун":"اختر لغة من 10 لغات","Тоҷикӣ":"الطاجيكية","Русский":"الروسية","English":"الإنجليزية","Deutsch":"الألمانية","Français":"الفرنسية","العربية":"العربية","中文":"الصينية","Türkçe":"التركية","فارسی":"الفارسية","O‘zbek":"الأوزبكية"},
+    zh:{"Асосӣ":"首页","Главная":"首页","Хонаҳо":"房屋","Дома":"房屋","Дар бораи мо":"关于我们","О нас":"关于我们","Тамос":"联系我们","Контакты":"联系我们","Дӯстдошта":"收藏","Ҷустуҷӯ":"搜索","Поиск":"搜索","Профил":"个人资料","Танзимот":"设置","Охиринҳо":"最近","Шаҳр":"城市","Ҳамаи шаҳрҳо":"所有城市","Буҷет":"预算","Масоҳат":"面积","Услуб":"风格","✨ Smart Match":"✨ 智能匹配","🎁 Хонаи тасодуфӣ":"🎁 随机房屋","🎁 Интихоб кун":"🎁 选择","🏠 Хонаҳои машҳур":"🏠 热门房屋","Чаро HomeLux?":"为什么选择 HomeLux？","Боваринок":"值得信赖","Интихоби зебо":"精选房源","Осон ва зуд":"简单快速","Таърихи дидан":"浏览历史","Пок кардани таърих":"清除历史","Телефон":"电话","Суроға":"地址","Вақт":"营业时间","Помощь":"帮助","Услуги":"服务","⚙️ Танзимот":"⚙️ 设置","🌙 Ҳолати торик":"🌙 深色模式","🔔 Огоҳиномаҳо":"🔔 通知","🌐 Забон":"🌐 语言","Регистрация":"注册","Ном":"姓名","Парол":"密码","✨ Сохтани профил":"✨ 创建资料","⚖️ Муқоиса":"比较","Пок кардан":"清除","🛒 Корзина":"购物车","Танзимоти HomeLux":"HomeLux 设置","Сайтро мувофиқи хоҳиши худ танзим кун":"按您的喜好设置网站","Намуди сайт":"网站外观","Ҳолати равшан ё торик":"浅色或深色模式","Хомӯш":"关闭","Забони сайт":"网站语言","Яке аз 10 забонро интихоб кун":"选择10种语言之一","Тоҷикӣ":"塔吉克语","Русский":"俄语","English":"英语","Deutsch":"德语","Français":"法语","العربية":"阿拉伯语","中文":"中文","Türkçe":"土耳其语","فارسی":"波斯语","O‘zbek":"乌兹别克语"},
+    tr:{"Асосӣ":"Ana Sayfa","Главная":"Ana Sayfa","Хонаҳо":"Evler","Дома":"Evler","Дар бораи мо":"Hakkımızda","О нас":"Hakkımızda","Тамос":"İletişim","Контакты":"İletişim","Дӯстдошта":"Favoriler","Ҷустуҷӯ":"Arama","Поиск":"Arama","Профил":"Profil","Танзимот":"Ayarlar","Охиринҳо":"Son","Шаҳр":"Şehir","Ҳамаи шаҳрҳо":"Tüm şehirler","Буҷет":"Bütçe","Масоҳат":"Alan","Услуб":"Stil","✨ Smart Match":"✨ Akıllı Eşleşme","🎁 Хонаи тасодуфӣ":"🎁 Rastgele ev","🎁 Интихоб кун":"🎁 Seç","🏠 Хонаҳои машҳур":"🏠 Popüler evler","Чаро HomeLux?":"Neden HomeLux?","Боваринок":"Güvenilir","Интихоби зебо":"Güzel seçim","Осон ва зуд":"Kolay ve hızlı","Таърихи дидан":"Görüntüleme geçmişi","Пок кардани таърих":"Geçmişi temizle","Телефон":"Telefon","Суроға":"Adres","Вақт":"Çalışma saatleri","Помощь":"Yardım","Услуги":"Hizmetler","⚙️ Танзимот":"⚙️ Ayarlar","🌙 Ҳолати торик":"🌙 Karanlık mod","🔔 Огоҳиномаҳо":"🔔 Bildirimler","🌐 Забон":"🌐 Dil","Регистрация":"Kayıt","Ном":"Ad","Парол":"Şifre","✨ Сохтани профил":"✨ Profil oluştur","⚖️ Муқоиса":"Karşılaştır","Пок кардан":"Temizle","🛒 Корзина":"Sepet","Танзимоти HomeLux":"HomeLux Ayarları","Сайтро мувофиқи хоҳиши худ танзим кун":"Siteyi özelleştirin","Намуди сайт":"Site görünümü","Ҳолати равшан ё торик":"Açık veya koyu mod","Хомӯш":"Kapalı","Забони сайт":"Site dili","Яке аз 10 забонро интихоб кун":"10 dilden birini seç","Тоҷикӣ":"Tacikçe","Русский":"Rusça","English":"İngilizce","Deutsch":"Almanca","Français":"Fransızca","العربية":"Arapça","中文":"Çince","Türkçe":"Türkçe","فارسی":"Farsça","O‘zbek":"Özbekçe"},
+    fa:{"Асосӣ":"خانه","Главная":"خانه","Хонаҳо":"خانه‌ها","Дома":"خانه‌ها","Дар бораи мо":"درباره ما","О нас":"درباره ما","Тамос":"تماس","Контакты":"تماس","Дӯстдошта":"مورد علاقه","Ҷустуҷӯ":"جستجو","Поиск":"جستجو","Профил":"پروفایل","Танзимот":"تنظیمات","Охиринҳо":"اخیر","Шаҳр":"شهر","Ҳамаи шаҳрҳо":"همه شهرها","Буҷет":"بودجه","Масоҳат":"مساحت","Услуб":"سبک","✨ Smart Match":"✨ تطبیق هوشمند","🎁 Хонаи тасодуфӣ":"🎁 خانه تصادفی","🎁 Интихоб кун":"🎁 انتخاب","🏠 Хонаҳои машҳур":"🏠 خانه‌های محبوب","Чаро HomeLux?":"چرا HomeLux؟","Боваринок":"قابل اعتماد","Интихоби зебо":"انتخاب زیبا","Осон ва зуд":"آسان و سریع","Таърихи дидан":"تاریخچه بازدید","Пок кардани таърих":"پاک کردن تاریخچه","Телефон":"تلفن","Суроға":"آدرس","Вақт":"ساعات کاری","Помощь":"کمک","Услуги":"خدمات","⚙️ Танзимот":"⚙️ تنظیمات","🌙 Ҳолати торик":"🌙 حالت تاریک","🔔 Огоҳиномаҳо":"🔔 اعلان‌ها","🌐 Забон":"🌐 زبان","Регистрация":"ثبت‌نام","Ном":"نام","Парол":"رمز عبور","✨ Сохтани профил":"✨ ایجاد پروفایل","⚖️ Муқоиса":"مقایسه","Пок кардан":"پاک کردن","🛒 Корзина":"سبد خرید","Танзимоти HomeLux":"تنظیمات HomeLux","Сайтро мувофиқи хоҳиши худ танзим кун":"سایت را شخصی‌سازی کنید","Намуди сайт":"ظاهر سایت","Ҳолати равшан ё торик":"حالت روشن یا تاریک","Хомӯш":"خاموش","Забони сайт":"زبان سایت","Яке аз 10 забонро интихоб кун":"یکی از ۱۰ زبان را انتخاب کنید","Тоҷикӣ":"تاجیکی","Русский":"روسی","English":"انگلیسی","Deutsch":"آلمانی","Français":"فرانسوی","العربية":"عربی","中文":"چینی","Türkçe":"ترکی","فارسی":"فارسی","O‘zbek":"ازبکی"},
+    uz:{"Асосӣ":"Bosh sahifa","Главная":"Bosh sahifa","Хонаҳо":"Uylar","Дома":"Uylar","Дар бораи мо":"Biz haqimizda","О нас":"Biz haqimizda","Тамос":"Aloqa","Контакты":"Aloqa","Дӯстдошта":"Sevimlilar","Ҷустуҷӯ":"Qidiruv","Поиск":"Qidiruv","Профил":"Profil","Танзимот":"Sozlamalar","Охиринҳо":"So‘nggi","Шаҳр":"Shahar","Ҳамаи шаҳрҳо":"Barcha shaharlar","Буҷет":"Byudjet","Масоҳат":"Maydon","Услуб":"Uslub","✨ Smart Match":"✨ Aqlli moslashtirish","🎁 Хонаи тасодуфӣ":"🎁 Tasodifiy uy","🎁 Интихоб кун":"🎁 Tanlash","🏠 Хонаҳои машҳур":"🏠 Mashhur uylar","Чаро HomeLux?":"Nega HomeLux?","Боваринок":"Ishonchli","Интихоби зебо":"Chiroyli tanlov","Осон ва зуд":"Oson va tez","Таърихи дидан":"Ko‘rish tarixi","Пок кардани таърих":"Tarixni tozalash","Телефон":"Telefon","Суроға":"Manzil","Вақт":"Ish vaqti","Помощь":"Yordam","Услуги":"Xizmatlar","⚙️ Танзимот":"⚙️ Sozlamalar","🌙 Ҳолати торик":"🌙 Qorong‘i rejim","🔔 Огоҳиномаҳо":"🔔 Bildirishnomalar","🌐 Забон":"🌐 Til","Регистрация":"Ro‘yxatdan o‘tish","Ном":"Ism","Парол":"Parol","✨ Сохтани профил":"✨ Profil yaratish","⚖️ Муқоиса":"Taqqoslash","Пок кардан":"Tozalash","🛒 Корзина":"Savat","Танзимоти HomeLux":"HomeLux sozlamalari","Сайтро мувофиқи хоҳиши худ танзим кун":"Saytni xohishingizga moslang","Намуди сайт":"Sayt ko‘rinishi","Ҳолати равшан ё торик":"Yorug‘ yoki qorong‘i rejim","Хомӯш":"O‘chiq","Забони сайт":"Sayt tili","Яке аз 10 забонро интихоб кун":"10 tildan birini tanlang","Тоҷикӣ":"Tojikcha","Русский":"Ruscha","English":"Inglizcha","Deutsch":"Nemischa","Français":"Fransuzcha","العربية":"Arabcha","中文":"Xitoycha","Türkçe":"Turkcha","فارسی":"Forscha","O‘zbek":"O‘zbekcha"}
+};
+
+const ORIGINAL_TEXT = new WeakMap();
+
+function applyLanguage(lang){
+    lang = LANG_TEXT[lang] ? lang : "tg";
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === "ar" || lang === "fa") ? "rtl" : "ltr";
+    localStorage.setItem("homeLuxLanguage", lang);
+    const dict = LANG_TEXT[lang];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+        if(!ORIGINAL_TEXT.has(node)) ORIGINAL_TEXT.set(node, node.nodeValue);
+        const original = ORIGINAL_TEXT.get(node);
+        const key = original.trim();
+        if(dict[key]) node.nodeValue = original.replace(key, dict[key]);
+        else node.nodeValue = original;
+    });
+    document.querySelectorAll("[placeholder]").forEach(el=>{
+        const key = el.getAttribute("placeholder");
+        const ph = {
+            tg:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Хона ё шаҳрро ҷустуҷӯ кун...","Номи хона ё шаҳрро ворид кунед.":"Номи хона ё шаҳрро ворид кунед."},
+            ru:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Ищите дом или город...","Номи хона ё шаҳрро ворид кунед.":"Введите название дома или города."},
+            en:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Search house or city...","Номи хона ё шаҳрро ворид кунед.":"Enter house name or city."},de:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Haus oder Stadt suchen...","Номи хона ё шаҳрро ворид кунед.":"Hausname oder Stadt eingeben."},fr:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Rechercher une maison ou une ville...","Номи хона ё шаҳрро ворид кунед.":"Entrez le nom de la maison ou de la ville."},ar:{"Хона ё шаҳрро ҷустуҷӯ кун...":"ابحث عن منزل أو مدينة...","Номи хона ё шаҳрро ворид кунед.":"أدخل اسم المنزل أو المدينة."},zh:{"Хона ё шаҳрро ҷустуҷӯ кун...":"搜索房屋或城市...","Номи хона ё шаҳрро ворид кунед.":"输入房屋名称或城市"},tr:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Ev veya şehir ara...","Номи хона ё шаҳрро ворид кунед.":"Ev adı veya şehir girin."},fa:{"Хона ё шаҳрро ҷустуҷӯ кун...":"جستجوی خانه یا شهر...","Номи хона ё шаҳрро ворид кунед.":"نام خانه یا شهر را وارد کنید."},uz:{"Хона ё шаҳрро ҷустуҷӯ кун...":"Uy yoki shaharni qidiring...","Номи хона ё шаҳрро ворид кунед.":"Uy nomi yoki shaharni kiriting."}
+        };
+        if(ph[lang][key]) el.placeholder = ph[lang][key];
+    });
+    document.querySelectorAll("[data-lang]").forEach(b=>b.classList.toggle("active", b.dataset.lang===lang));
+    const current = document.getElementById("currentLanguageLabel");
+    const labels = {tg:"Тоҷикӣ",ru:"Русский",en:"English",de:"Deutsch",fr:"Français",ar:"العربية",zh:"中文",tr:"Türkçe",fa:"فارسی",uz:"O‘zbek"};
+    if(current) current.textContent = labels[lang] || labels.tg;
+}
+
+document.querySelectorAll("[data-lang]").forEach(button=>{
+    button.addEventListener("click",()=>{
+        const lang = button.dataset.lang;
+        applyLanguage(lang);
+        showToast(`🌐 ${button.textContent.trim()}`);
+    });
+});
+
+applyLanguage(localStorage.getItem("homeLuxLanguage") || "tg");
+
+/* ================= VIEW HOUSES ================= */
+
+document.getElementById(
+    "viewHouses"
+).addEventListener(
+    "click",
+    ()=>{
+        showPage("houses");
+    }
+);
+
+/* ================= ESCAPE ================= */
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "Escape"){
+
+            document
+                .getElementById(
+                    "registerModal"
+                )
+                .classList.add("hidden");
+
+            document
+                .getElementById(
+                    "houseModal"
+                )
+                .classList.add("hidden");
+
+        }
+
+    }
+);
+
+
+/* ================= CART ================= */
+
+let cart = JSON.parse(
+    localStorage.getItem("homeLuxCart") || "[]"
+);
+
+function saveCart(){
+    localStorage.setItem(
+        "homeLuxCart",
+        JSON.stringify(cart)
+    );
+}
+
+function getCartCount(){
+    return cart.reduce((sum,item)=>sum + item.qty, 0);
+}
+
+function toggleCart(id){
+    const house = houses.find(h => h.id === id);
+    if(!house) return;
+
+    const existing = cart.find(item => item.id === id);
+
+    if(existing){
+        cart = cart.filter(item => item.id !== id);
+        showToast("🗑️ Хона аз корзина хориҷ шуд");
+    }else{
+        cart.push({
+            id: id,
+            qty: 1
+        });
+        showToast("🛒 Хона ба корзина илова шуд");
+    }
+
+    saveCart();
+    renderCart();
+    renderHouses();
+}
+
+function changeCartQty(id, amount){
+    const item = cart.find(item => item.id === id);
+    if(!item) return;
+
+    item.qty += amount;
+
+    if(item.qty <= 0){
+        cart = cart.filter(x => x.id !== id);
+    }
+
+    saveCart();
+    renderCart();
+    renderHouses();
+}
+
+function removeFromCart(id){
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+    renderHouses();
+    showToast("🗑️ Аз корзина хориҷ шуд");
+}
+
+function clearCart(){
+    if(!cart.length){
+        showToast("Корзина аллакай холӣ аст");
+        return;
+    }
+
+    cart = [];
+    saveCart();
+    renderCart();
+    renderHouses();
+    showToast("🗑️ Корзина пурра тоза шуд");
+}
+
+function renderCart(){
+    const itemsBox = document.getElementById("cartItems");
+    const countBox = document.getElementById("cartCount");
+    const totalBox = document.getElementById("cartTotal");
+
+    if(!itemsBox || !countBox || !totalBox) return;
+
+    const count = getCartCount();
+    countBox.textContent = count;
+
+    if(!cart.length){
+        itemsBox.innerHTML = `
+            <div class="cart-empty">
+                <div style="font-size:48px;">🛒</div>
+                <div>
+                    <strong>Корзина холӣ аст</strong><br>
+                    Хонаҳои дӯстдоштаатонро ба корзина илова кунед.
+                </div>
+            </div>
+        `;
+        totalBox.textContent = "0 сомони";
+        return;
+    }
+
+    let total = 0;
+
+    itemsBox.innerHTML = cart.map(item => {
+        const house = houses.find(h => h.id === item.id);
+        if(!house) return "";
+
+        total += house.price * item.qty;
+
+        return `
+            <div class="cart-item">
+                <img src="${house.image}" alt="${house.name}">
+                <div class="cart-item-info">
+                    <h3>${house.name}</h3>
+                    <p>${house.price.toLocaleString()} сомони</p>
+
+                    <div class="cart-item-bottom">
+                        <div class="cart-qty">
+                            <button type="button" onclick="changeCartQty(${house.id},-1)">−</button>
+                            <strong>${item.qty}</strong>
+                            <button type="button" onclick="changeCartQty(${house.id},1)">+</button>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="cart-remove"
+                            onclick="removeFromCart(${house.id})"
+                        >
+                            Хориҷ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    totalBox.textContent = `${total.toLocaleString()} сомони`;
+}
+
+function openCart(){
+    document.getElementById("cartPanel").classList.add("open");
+    document.getElementById("cartOverlay").classList.add("show");
+    renderCart();
+}
+
+function closeCart(){
+    document.getElementById("cartPanel").classList.remove("open");
+    document.getElementById("cartOverlay").classList.remove("show");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cartButton = document.getElementById("cartButton");
+    const closeCartButton = document.getElementById("closeCart");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const clearCartButton = document.getElementById("clearCart");
+
+    if(cartButton){
+        cartButton.addEventListener("click", openCart);
+    }
+
+    if(closeCartButton){
+        closeCartButton.addEventListener("click", closeCart);
+    }
+
+    if(cartOverlay){
+        cartOverlay.addEventListener("click", closeCart);
+    }
+
+    if(clearCartButton){
+        clearCartButton.addEventListener("click", clearCart);
+    }
+
+    document.addEventListener("keydown", event => {
+        if(event.key === "Escape"){
+            closeCart();
+        }
+    });
+
+    renderCart();
+});
+
+
+/* ================= SMART MATCH LOGIC ================= */
+function runSmartMatch(){
+    const city = document.getElementById("smartCity")?.value || "all";
+    const budget = Number(document.getElementById("smartBudget")?.value || 999999999);
+    const area = Number(document.getElementById("smartArea")?.value || 0);
+    const style = document.getElementById("smartStyle")?.value || "all";
+    const resultBox = document.getElementById("smartResult");
+    if(!resultBox) return;
+
+    const ranked = houses.map(house=>{
+        let score = 0;
+        if(city === "all" || house.city === city) score += 35;
+        if(house.price <= budget) score += 30;
+        else score += Math.max(0, 30 - Math.round(((house.price-budget)/Math.max(budget,1))*30));
+        if(house.area >= area) score += 20;
+        else score += Math.max(0, Math.round((house.area/Math.max(area,1))*20));
+        if(style === "all") score += 15;
+        if(style === "premium" && house.premium) score += 15;
+        if(style === "modern" && /modern|glass|minimalist/i.test(house.name)) score += 15;
+        if(style === "family" && /family|garden|stone|wood/i.test(house.name)) score += 15;
+        return {...house, matchScore:Math.min(99,Math.round(score))};
+    }).sort((a,b)=>b.matchScore-a.matchScore).slice(0,3);
+
+    if(!ranked.length){
+        resultBox.innerHTML='<div class="smart-no-result">Ягон хона мувофиқ нест. Шартҳоро каме васеътар интихоб кунед.</div>';
+    }else{
+        resultBox.innerHTML=`
+            <div class="smart-result-head">
+                <strong>✨ Мо барои шумо ${ranked.length} варианти беҳтарин ёфтем</strong>
+                <span class="smart-score">MATCH ${ranked[0].matchScore}%</span>
+            </div>
+            <div class="smart-results-grid">
+                ${ranked.map(house=>`
+                    <div class="smart-result-card">
+                        <div class="smart-result-image" style="background-image:url('${house.image}')"></div>
+                        <div>
+                            <h4>${house.name}</h4>
+                            <p>📍 ${house.city} · ${house.area} м²<br>💰 $${house.price.toLocaleString()}</p>
+                            <button type="button" onclick="openHouse(${house.id})">Дидан →</button>
+                        </div>
+                    </div>
+                `).join("")}
+            </div>`;
+    }
+    resultBox.classList.add("show");
+}
+
+const smartMatchButton = document.getElementById("smartMatchButton");
+if(smartMatchButton){
+    smartMatchButton.addEventListener("click", runSmartMatch);
+}
+
+
+
+/* ================= RANDOM HOUSE ================= */
+let lastRandomHouseId = null;
+function showRandomHouse(){
+    if(!Array.isArray(houses) || !houses.length) return;
+    let choices = houses.filter(h => h.id !== lastRandomHouseId);
+    if(!choices.length) choices = houses;
+    const house = choices[Math.floor(Math.random() * choices.length)];
+    lastRandomHouseId = house.id;
+    const box = document.getElementById("randomHouseResult");
+    if(!box) return;
+    box.classList.remove("hidden", "show");
+    void box.offsetWidth;
+    box.innerHTML = `
+        <div class="random-house-image" style="background-image:url('${house.image}')"></div>
+        <div class="random-house-info">
+            <span class="random-house-tag">✨ Интихоби HomeLux</span>
+            <h3>${house.name}</h3>
+            <div class="random-house-location">📍 ${house.location}</div>
+            <div class="random-house-details">
+                <span>💰 $${house.price.toLocaleString()}</span>
+                <span>📐 ${house.area} м²</span>
+                <span>🏢 ${house.floors} этаж</span>
+            </div>
+            <div class="random-house-actions">
+                <button class="random-open" onclick="openHouse(${house.id})">👀 Дидани хона</button>
+                <button class="secondary-button" onclick="showRandomHouse()">🎁 Боз якто</button>
+            </div>
+        </div>`;
+    box.classList.add("show");
+}
+const randomHouseButton = document.getElementById("randomHouseButton");
+if(randomHouseButton) randomHouseButton.addEventListener("click", showRandomHouse);
+
+/* ================= START ================= */
+
+applyTheme();
+
+applyNotifications();
+
+updateProfile();
+
+renderHouses();
+
+renderRecent();
+
+renderFavorites();
+
+updateCompareBar();
+
+updateStatistics();
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<!-- ================= CART ================= -->
+<div id="cartButton" class="cart-button" title="Корзина">
+    🛒
+    <span id="cartCount" class="cart-count">0</span>
+</div>
+
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<aside id="cartPanel" class="cart-panel" aria-label="Корзина">
+    <div class="cart-header">
+        <h2>🛒 Корзина</h2>
+        <button id="closeCart" type="button">×</button>
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-footer">
+        <div class="cart-total-row">
+            <span>Ҳамагӣ:</span>
+            <strong id="cartTotal">0 сомони</strong>
+        </div>
+        <button id="clearCart" class="clear-cart" type="button">
+            🗑️ Тоза кардани корзина
+        </button>
+    </div>
+</aside>
+
+</body>
+</html>
